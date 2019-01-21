@@ -143,7 +143,7 @@ class A2C:
             s_[ind] = exp.current_state
             s[ind] = exp.last_state
             a[ind] = exp.action
-
+        np.array_equal(r_,self.get_td(sess, s_, t))
         print(r_ == self.get_td(sess, s_, t))
         print(r_)
         print(self.get_td(sess, s_, t))
@@ -151,6 +151,9 @@ class A2C:
         print(self.get_td_error(sess, s, r) == self.get_old_td_error(sess, s, t, s_))
         print(self.get_td_error(sess, s, r))
         print(self.get_old_td_error(sess, s, t, s_))
+
+
+
 
         feed_dict = {self.s: s, self.v: r_,
                      self.td_error: self.get_td_error(sess, s, t),
