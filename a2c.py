@@ -114,7 +114,7 @@ class A2C:
         experience = episode.experience
         experience_size = len(experience)
 
-        last_state = experience.last_state
+        last_state = experience[experience_size-1].current_state
         s = np.reshape(last_state, newshape=(1, self.s_len))
         last_state_value = self.get_value(sess, s)
 
@@ -147,7 +147,7 @@ class A2C:
             s[ind] = exp.last_state
             a[ind] = exp.action
 
-        print(self.get_value(sess, last_state))
+        print(r == self.get_value(sess, last_state))
 
         print("----")
         print(np.array_equal(r_,self.get_td(sess, s_, t)))
