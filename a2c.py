@@ -125,7 +125,6 @@ class A2C:
         t = np.zeros(shape=(experience_size, 1))
         r_ = np.zeros(shape=(experience_size, 1))
 
-        print(self.get_value(sess, last_state))
         print(r)
         print(r == self.get_value(sess, last_state))
 
@@ -147,6 +146,10 @@ class A2C:
             s_[ind] = exp.current_state
             s[ind] = exp.last_state
             a[ind] = exp.action
+
+        print(self.get_value(sess, last_state))
+
+        print("----")
         print(np.array_equal(r_,self.get_td(sess, s_, t)))
         print(r_ == self.get_td(sess, s_, t))
         print(r_)
