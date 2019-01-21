@@ -125,9 +125,6 @@ class A2C:
         t = np.zeros(shape=(experience_size, 1))
         r_ = np.zeros(shape=(experience_size, 1))
 
-        print(r)
-        print(r == last_state_value)
-
         for ind, exp in enumerate(experience):
             t[ind] = exp.reward
             if ind + self.n_step < experience_size:
@@ -147,6 +144,8 @@ class A2C:
             s[ind] = exp.last_state
             a[ind] = exp.action
 
+        print(r)
+        print(self.get_value(sess, s))
         print(r == self.get_value(sess, s))
 
         print("----")
