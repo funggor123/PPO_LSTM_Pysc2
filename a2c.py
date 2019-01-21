@@ -148,11 +148,10 @@ class A2C:
         print(r_)
         print(self.get_td(sess, s_, t))
         print("--")
+        print(np.array_equal(self.get_td_error(sess, s, r),  self.get_old_td_error(sess, s, t, s_)))
         print(self.get_td_error(sess, s, r) == self.get_old_td_error(sess, s, t, s_))
         print(self.get_td_error(sess, s, r))
         print(self.get_old_td_error(sess, s, t, s_))
-
-
 
 
         feed_dict = {self.s: s, self.v: r_,

@@ -50,5 +50,5 @@ def init():
                 activation="elu",
                 discount_ratio=0.90,
                 learning_rate=0.0005)
-    train = Train(is_train=True, max_episode=1)
+    train = Train(is_train=True, max_episode=2000)
     return actor, env, train
