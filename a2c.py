@@ -143,7 +143,7 @@ class A2C:
             s_[ind] = exp.current_state
             s[ind] = exp.last_state
             a[ind] = exp.action
-        np.array_equal(r_,self.get_td(sess, s_, t))
+        print(np.array_equal(r_,self.get_td(sess, s_, t)))
         print(r_ == self.get_td(sess, s_, t))
         print(r_)
         print(self.get_td(sess, s_, t))
