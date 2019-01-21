@@ -114,7 +114,7 @@ class A2C:
         experience = episode.experience
         experience_size = len(experience)
 
-        last_state = experience[experience_size-1].current_state
+        last_state = experience.last_state
         s = np.reshape(last_state, newshape=(1, self.s_len))
         last_state_value = self.get_value(sess, s)
 
@@ -126,7 +126,7 @@ class A2C:
         r_ = np.zeros(shape=(experience_size, 1))
 
         print(r)
-        print(r == self.get_value(sess, last_state))
+        print(r == last_state_value)
 
         for ind, exp in enumerate(experience):
             t[ind] = exp.reward
