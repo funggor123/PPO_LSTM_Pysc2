@@ -147,7 +147,7 @@ class A2C:
             s[ind] = exp.last_state
             a[ind] = exp.action
 
-        print(r == self.get_value(sess, last_state))
+        print(r == self.get_value(sess, s))
 
         print("----")
         print(np.array_equal(r_,self.get_td(sess, s_, t)))
