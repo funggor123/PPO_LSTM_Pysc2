@@ -25,9 +25,9 @@ def train_episode(sess, actor, environment, train):
 
         observation, reward, done, info = env.step(action)
 
-        exp.set_last_state_value(value)
         exp.set_action(action)
         exp.set_reward(reward)
+        exp.set_last_state_value(value)
         exp.set_current_state(observation)
 
         episode.add_experience(exp)
@@ -36,7 +36,7 @@ def train_episode(sess, actor, environment, train):
 
         if done:
             if train is True:
-                loss, global_step = actor.learn(sess, episode)
+                loss, global_step, gradient = actor.learn(sess, episode)
                 return episode.reward, loss, global_step
             break
 
@@ -49,6 +49,7 @@ def init():
                 observe_space_len=env.observation_space_length,
                 activation="elu",
                 discount_ratio=0.90,
-                learning_rate=0.0005)
-    train = Train(is_train=True, max_episode=2000)
+                learning_rate=0.0005,
+                n_step=15)
+    train = Train(is_train=True, max_episode=1)
     return actor, env, train

@@ -42,7 +42,7 @@ class Train:
         else:
             return False
 
-    def save_in_every_episode(self, num_of_episode, sess, saver, ):
+    def save_in_every_episode(self, num_of_episode, sess, saver):
         if self.episode % num_of_episode == 0:
             save_path = saver.save(sess, "/tmp/model.ckpt")
             print("Save in : ", save_path)

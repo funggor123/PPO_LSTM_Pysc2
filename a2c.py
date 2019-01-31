@@ -45,6 +45,8 @@ class A2C:
 
             self.n_step = n_step
 
+            self.gradient_opr = self.get_compute_gradient(self.total_loss_opr, self.optimizer_opr)
+
     ## Operators and Variables
 
     def get_min_with_gc_opr(self, loss):
@@ -90,8 +92,8 @@ class A2C:
 
     ## Session Run
 
-    def update_network(self, sess, min_opr, loss_opr, summary_opr, global_step, feed_dict):
-        return sess.run([min_opr, loss_opr, summary_opr, global_step], feed_dict)
+    def update_network(self, sess, min_opr, loss_opr, summary_opr, global_step, gradient_opr, feed_dict):
+        return sess.run([min_opr, loss_opr, summary_opr, global_step, gradient_opr], feed_dict)
 
     def get_value(self, sess, s):
         return sess.run(self.value_opr, feed_dict={self.s: s})
@@ -102,11 +104,8 @@ class A2C:
     def get_td_error(self, sess, s, r):
         return r - self.get_value(sess, s)
 
-    def get_old_td_error(self, sess, s, r, s_):
-        return r + self.d_r * self.get_value(sess, s_) - self.get_value(sess, s)
-
-    def get_td(self, sess, s_, r):
-        return r + self.d_r * self.d_r * self.get_value(sess, s_)
+    def get_compute_gradient(self, loss, opt):
+        return opt.compute_gradients(loss)
 
     ## Learn
 
@@ -114,19 +113,18 @@ class A2C:
         experience = episode.experience
         experience_size = len(experience)
 
-        last_state = experience[experience_size-1].current_state
-        s = np.reshape(last_state, newshape=(1, self.s_len))
-        last_state_value = self.get_value(sess, s)
+        ls_s = experience[experience_size - 1].current_state
+        s = np.reshape(ls_s, newshape=(1, self.s_len))
+        lasts_v = self.get_value(sess, s)
 
         s = np.zeros(shape=(experience_size, self.s_len))
-        s_= np.zeros(shape=(experience_size, self.s_len))
-        r = np.zeros(shape=(experience_size, 1))
+        s_ = np.zeros(shape=(experience_size, self.s_len))
+        r = np.zeros(dtype=np.float64, shape=(experience_size, 1))
+        r_ = np.zeros(dtype=np.float64, shape=(experience_size, 1))
         a = np.zeros(shape=experience_size)
-        t = np.zeros(shape=(experience_size, 1))
-        r_ = np.zeros(shape=(experience_size, 1))
 
         for ind, exp in enumerate(experience):
-            t[ind] = exp.reward
+            r[ind] = exp.reward
             if ind + self.n_step < experience_size:
                 r[ind] = experience[ind + self.n_step].last_state_value
                 r_[ind] = experience[ind + self.n_step].last_state_value
@@ -134,8 +132,8 @@ class A2C:
                     r[ind] = self.d_r * r[ind] + experience[i].reward
                     r_[ind] = self.d_r * self.d_r * r_[ind] + experience[i].reward
             else:
-                r[ind] = last_state_value
-                r_[ind] = last_state_value
+                r[ind] = lasts_v
+                r_[ind] = lasts_v
                 for i in reversed(range(ind, experience_size)):
                     r[ind] = self.d_r * r[ind] + experience[i].reward
                     r_[ind] = self.d_r * self.d_r * r_[ind] + experience[i].reward
@@ -144,29 +142,14 @@ class A2C:
             s[ind] = exp.last_state
             a[ind] = exp.action
 
-        print(r)
-        print(self.get_value(sess, s))
-        print(r == self.get_value(sess, s))
-
-        print("----")
-        print(np.array_equal(r_,self.get_td(sess, s_, t)))
-        print(r_ == self.get_td(sess, s_, t))
-        print(r_)
-        print(self.get_td(sess, s_, t))
-        print("--")
-        print(np.array_equal(self.get_td_error(sess, s, r),  self.get_old_td_error(sess, s, t, s_)))
-        print(self.get_td_error(sess, s, r) == self.get_old_td_error(sess, s, t, s_))
-        print(self.get_td_error(sess, s, r))
-        print(self.get_old_td_error(sess, s, t, s_))
-
-
         feed_dict = {self.s: s, self.v: r_,
-                     self.td_error: self.get_td_error(sess, s, t),
+                     self.td_error: self.get_td_error(sess, s, r),
                      self.a: a}
-        _, loss, summary, global_step = self.update_network(sess, self.min_opr, self.total_loss_opr, self.summary_opr,
-                                                            self.global_step, feed_dict)
+        _, loss, summary, global_step, gradient = self.update_network(sess, self.min_opr, self.total_loss_opr,
+                                                                      self.summary_opr,
+                                                                      self.global_step, self.gradient_opr, feed_dict)
         self.writer.add_summary(summary, global_step)
-        return loss, global_step
+        return loss, global_step, gradient
 
     ## Choose Action
 
