@@ -1,8 +1,9 @@
-from a2c import A2C
+from ppo import PPO
 from environment import Environment
 from experience import Experience
 from episode import Episode
 from train import Train
+from a2c import A2C
 
 
 def train_episode(sess, actor, environment, train):
@@ -32,24 +33,27 @@ def train_episode(sess, actor, environment, train):
 
         episode.add_experience(exp)
         episode.add_reward(reward)
-        episode.add_step()
 
         if done:
             if train is True:
-                loss, global_step, gradient = actor.learn(sess, episode)
-                return episode.reward, loss, global_step
+                actor.sync_target(sess)
+                episode.set_terminal_state_value(actor.get_value(sess, observation))
+                episode, global_step = actor.learn(sess, episode)
+                return episode, global_step
             break
 
 
 def init():
     env = Environment(action_space_length=2, observation_space_length=4, gym_string="CartPole-v0", max_step=300)
-    actor = A2C(num_units=30,
+    actor = PPO(num_units=40,
                 num_layers=2,
                 action_space_len=env.action_space_length,
                 observe_space_len=env.observation_space_length,
                 activation="elu",
-                discount_ratio=0.90,
-                learning_rate=0.0005,
-                n_step=15)
-    train = Train(is_train=True, max_episode=1)
+                discount_ratio=0.9,
+                learning_rate=0.0001,
+                n_step=2,
+                clip_r=0.3
+                )
+    train = Train(is_train=True, max_episode=2500)
     return actor, env, train

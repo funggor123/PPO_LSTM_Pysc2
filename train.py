@@ -4,7 +4,6 @@ class Train:
         self.total_reward = 0
         self.total_loss = 0
         self.isTrain = is_train
-        self.total_step = 0
         self.episode = 0
         self.max_episode = max_episode
 
@@ -16,9 +15,6 @@ class Train:
 
     def add_total_episode(self):
         self.episode = self.episode + 1
-
-    def add_total_step(self, step):
-        self.total_step = self.total_step + step
 
     def print_total_reward(self):
         print("Average Reward ", self.total_reward / self.episode)
