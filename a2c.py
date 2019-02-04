@@ -25,7 +25,6 @@ class A2C:
         self.value_opr, self.policy_opr, self.params, self.t = model.make_network(input_opr=self.s,
                                                                                   name="target",
                                                                                   train=True)
-
         self.value_loss_opr = self.__get_value_loss_opr__(self.value_opr, self.v)
 
         self.optimizer_opr = self.__get_optimizer_opr__(self.lr)
@@ -114,8 +113,7 @@ class A2C:
             tf.nn.sparse_softmax_cross_entropy_with_logits(logits=policy_out, labels=a) * td_error)
 
     def __get_policy_continous_loss_opr__(self, policy_out, a, td_error):
-        log_pi = tf.log(tf.clip_by_value(policy_out.prob(a), 1e-20, 1.0))
-        return -tf.reduce_mean(tf.log(tf.reduce_sum(log_pi, 1)) * td_error)
+        return -tf.reduce_mean(tf.reduce_sum(policy_out.log_prob(a), 1) * td_error)
 
     def __get_total_loss_opr__(self, value_loss, policy_loss):
         return tf.add(value_loss, policy_loss)
