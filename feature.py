@@ -1,27 +1,29 @@
 import numpy as np
 
 
-def feature_transform(actor, episode):
-    experience = episode.experience
-    experience_size = len(experience)
+class FeatureTransform:
 
-    s = np.zeros(shape=(experience_size, actor.s_len))
-    q = np.zeros(dtype=np.float64, shape=(experience_size, 1))
-    q_ = np.zeros(dtype=np.float64, shape=(experience_size, 1))
-    a = np.zeros(shape=experience_size)
+    def __init__(self, state_len, action_len):
+        self.state_len = state_len
+        self.action_len = action_len
 
-    for step, exp in enumerate(experience):
-        if step + actor.n_step < experience_size:
-            q[step] = experience[step + actor.n_step].last_state_value
-            for i in reversed(range(step, step + actor.n_step)):
-                q[step] = experience[i].reward + actor.d_r * q[step]
-                q_[step] = experience[i].reward + actor.d_r * actor.d_r * q[step]
-        else:
-            q[step] = episode.terminal_state_value
-            for i in reversed(range(step, experience_size)):
-                q[step] = experience[i].reward + actor.d_r * q[step]
-                q_[step] = experience[i].reward + actor.d_r * actor.d_r * q[step]
+    def transform(self, episode):
+        experience = episode.experience
+        max_t = len(experience)
 
-        s[step] = exp.last_state
-        a[step] = exp.action
-    return s, a, q, q_
+        s = np.zeros(shape=(max_t,)+self.state_len)
+        s_ = np.zeros(shape=(max_t,)+self.state_len)
+        v = np.zeros(dtype=np.float64, shape=(max_t+1))
+
+        a = np.zeros(shape=(max_t, self.action_len))
+        r = np.zeros(shape=max_t)
+
+        for t, exp in enumerate(experience):
+            s[t] = exp.last_state
+            s_[t] = exp.current_state
+            v[t] = exp.last_state_value
+            r[t] = exp.reward
+            a[t] = exp.action
+
+        v[max_t] = episode.terminal_state_value
+        return s, s_, a, r, v, max_t
