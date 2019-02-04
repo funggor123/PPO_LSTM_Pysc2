@@ -11,13 +11,13 @@ from a2c import A2C
 def train_episode(sess, actor, environment, train):
     env = environment.env
     observation = env.reset()
+
     entire_episode = Episode()
     episode = Episode()
     for ind in range(environment.max_step):
-
-        if train is False:
-            env.render()
-
+        '''
+        env.render(close=train)
+        '''
         exp = Experience(obs_len=environment.observation_space_length, act_len=environment.action_space_length)
         exp.set_last_state(observation)
 

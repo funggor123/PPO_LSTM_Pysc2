@@ -69,6 +69,8 @@ class A2C:
         self.graph = graph
         '''
 
+
+
     def get_global_step_var(self):
         return self.global_step
 

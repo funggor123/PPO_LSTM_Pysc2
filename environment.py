@@ -1,5 +1,5 @@
 import gym
-
+from gym import wrappers
 
 class Environment:
 
@@ -9,6 +9,7 @@ class Environment:
         self.gym_string = gym_string
         self.max_step = max_step
         self.env = gym.make(self.gym_string)
+        self.env = wrappers.Monitor(self.env, "/tmp", video_callable=False, force=True)
         self.batch_size = batch_size
 
 
