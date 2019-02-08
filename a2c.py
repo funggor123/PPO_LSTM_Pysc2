@@ -1,75 +1,69 @@
 import tensorflow as tf
-from tensorflow import layers
 import numpy as np
 
 
 class A2C:
 
-    def __init__(self, observe_space_len, action_space_len, learning_rate, feature_transform, model):
+    def __init__(self, observe_space_len, action_space_dim, action_space_length, learning_rate, feature_transform,
+                 model, regularization_stength):
 
         self.s_len = observe_space_len
-        self.a_len = action_space_len
+        self.a_dim = action_space_dim
         self.lr = learning_rate
         self.model = model
+        self.reg_s = regularization_stength
+        self.action_space_length = action_space_length
         self.feature_transform = feature_transform
 
-        self.s = tf.placeholder(tf.float64, shape=(None,) + observe_space_len, name="state")
-        self.v = tf.placeholder(tf.float64, shape=None, name="value")
-        self.td_error = tf.placeholder(tf.float64, shape=None, name="td_error")
+        self.s = tf.placeholder(tf.float32, shape=(None,) + observe_space_len, name="state")
+        self.v = tf.placeholder(tf.float32, shape=(None, 1), name="value")
+        self.td_error = tf.placeholder(tf.float32, shape=(None, 1), name="td_error")
 
         if model.is_continuous:
-            self.a = tf.placeholder(tf.float64, shape=(None, action_space_len), name="action")
+            self.a = tf.placeholder(tf.float32, shape=(None,) + action_space_dim, name="action")
         else:
-            self.a = tf.placeholder(tf.float64, shape=None, name="action")
+            self.a = tf.placeholder(tf.int32, shape=(None,) + action_space_dim, name="action")
 
-        self.value_opr, self.policy_opr, self.params, self.t = model.make_network(input_opr=self.s,
-                                                                                  name="target",
-                                                                                  train=True)
-        self.value_loss_opr = self.__get_value_loss_opr__(self.value_opr, self.v)
+        self.policy_opr, self.params = model.make_actor_network(input_opr=self.s,
+                                                                name="target",
+                                                                train=True)
 
-        self.optimizer_opr = self.__get_optimizer_opr__(self.lr)
+        self.value_opr, _ = model.make_critic_network(input_opr=self.s,
+                                                      name="value",
+                                                      train=True)
+        with tf.variable_scope('value_loss'):
+            self.value_loss_opr = self.__get_value_loss_opr__(self.value_opr, self.v)
 
         if model.is_continuous:
-            self.policy_loss_opr = self.__get_policy_continous_loss_opr__(self.policy_opr, self.a, self.td_error)
-            self.out_opr = tf.squeeze(self.policy_opr.sample(1), axis=0)
+            with tf.variable_scope('continuous_policy_loss'):
+                self.policy_loss_opr = self.__get_policy_continous_loss_opr__(self.policy_opr, self.a, self.td_error)
+            with tf.variable_scope('sample_action'):
+                self.out_opr = tf.squeeze(self.policy_opr.sample(1), axis=0)
+                self.out_opr = tf.clip_by_value(self.out_opr, -2, 2)
         else:
-            self.policy_loss_opr = self.__get_policy_discrete_loss_opr__(self.policy_opr, self.a, self.td_error)
-            self.out_opr = tf.nn.softmax(self.policy_opr)
-
-        self.total_loss_opr = self.__get_total_loss_opr__(self.value_loss_opr, self.policy_loss_opr)
-
-        '''
-        with tf.name_scope('Loss'):
-            tf.summary.scalar('loss', self.total_loss_opr)
-        '''
+            with tf.variable_scope('discrete_policy_loss'):
+                self.policy_loss_opr = self.__get_policy_discrete_loss_opr__(self.policy_opr, self.a, self.td_error)
+                self.out_opr = self.policy_opr
+        with tf.variable_scope('total_loss'):
+            self.total_loss_opr = self.__get_total_loss_opr__(self.value_loss_opr, self.policy_loss_opr)
 
         self.global_step = tf.train.create_global_step()
-        '''
-        self.min_policy_loss_opr = self.__get_min_opr__(self.policy_loss_opr, self.optimizer_opr, self.global_step)
-        self.min_value_loss_opr = self.__get_min_opr_without_gc__(self.value_loss_opr, self.optimizer_opr)
-        '''
-
-        self.min_policy_loss_opr = self.__get_min_with_gc_opr__(self.policy_loss_opr, self.optimizer_opr,
-                                                                self.global_step)
-
-        self.min_value_loss_opr = self.__get_min_with_gc_opr_without_gs__(self.value_loss_opr, self.optimizer_opr)
-
-        self.min_total_loss_opr = self.__get_min_with_gc_opr__(self.total_loss_opr, self.optimizer_opr,
-                                                               self.global_step)
-
+        self.optimizer_opr = self.__get_optimizer_opr__(self.lr)
+        with tf.variable_scope('min_loss'):
+            self.min_policy_loss_opr = self.__get_min_opr__(self.policy_loss_opr, self.optimizer_opr, self.global_step)
+            self.min_value_loss_opr = self.__get_min_opr_without_gc__(self.value_loss_opr, self.optimizer_opr)
+            self.min_total_loss_opr = self.__get_min_opr__(self.total_loss_opr, self.optimizer_opr,
+                                                           self.global_step)
         '''
         self.summary_opr = tf.summary.merge_all()
         '''
-
-        self.init_opr = tf.global_variables_initializer()
-        self.saver_opr = tf.train.Saver()
-
+        with tf.variable_scope('others'):
+            self.init_opr = tf.global_variables_initializer()
+            self.saver_opr = tf.train.Saver()
         '''
         self.writer = tf.summary.FileWriter("TensorBoard/", graph=graph)
         self.graph = graph
         '''
-
-
 
     def get_global_step_var(self):
         return self.global_step
@@ -108,20 +102,29 @@ class A2C:
         return opt_opr.apply_gradients(clipped_gradients)
 
     def __get_value_loss_opr__(self, value_out, v):
-        return tf.reduce_mean(tf.square((value_out - v)))
+        exp = tf.squared_difference(value_out, v)
+        return tf.reduce_mean(exp)
 
     def __get_policy_discrete_loss_opr__(self, policy_out, a, td_error):
-        return -tf.reduce_mean(
-            tf.nn.sparse_softmax_cross_entropy_with_logits(logits=policy_out, labels=a) * td_error)
+        entropy = tf.reduce_sum(self.policy_opr[0] * tf.log(self.policy_opr[0]), axis=1)
+        exp = tf.nn.sparse_softmax_cross_entropy_with_logits(logits=policy_out[0], labels=a[0])
+        for i in range(1, len(self.a_dim)):
+            entropy = tf.reduce_sum(self.policy_opr[0] * tf.log(self.policy_opr[0]), axis=1) + entropy
+            exp = tf.nn.sparse_softmax_cross_entropy_with_logits(logits=policy_out[i], labels=a[
+                i]) + exp
+        exp = exp * td_error
+        return tf.reduce_mean(-exp)
 
     def __get_policy_continous_loss_opr__(self, policy_out, a, td_error):
-        return -tf.reduce_mean(tf.reduce_sum(policy_out.log_prob(a), 1) * td_error)
+        entropy = policy_out.entropy() * self.reg_s
+        exp = policy_out.log_prob(a) * td_error
+        return tf.reduce_mean(-exp) - tf.reduce_mean(entropy)
 
     def __get_total_loss_opr__(self, value_loss, policy_loss):
         return tf.add(value_loss, policy_loss)
 
     def __get_optimizer_opr__(self, lr):
-        return tf.train.AdamOptimizer(lr)
+        return tf.contrib.opt.NadamOptimizer(lr)
 
     ## Session Run
 
@@ -156,31 +159,20 @@ class A2C:
                      }
 
         _, loss, global_step = self.__update_network__(sess, self.min_total_loss_opr, self.total_loss_opr,
-                                                       self.global_step,
-
-                                                       feed_dict)
+                                                       self.global_step, feed_dict)
         episode.loss = loss
 
         return episode, global_step
 
     ## Choose Action
 
-    def choose_action_with_exploration(self, sess, s):
-        shape = (1,) + self.s_len
-        s = np.reshape(s, newshape=shape)
-        action, value = sess.run([self.out_opr, self.value_opr], feed_dict={self.s: s})
-        if self.model.is_continuous:
-            action = np.reshape(action, newshape=self.a_len)
-            return [np.clip(action[0], -1, 1), np.clip(action[1], 0, 1), np.clip(action[2], 0, 1)], value
-        else:
-            return np.random.choice(np.arange(action.shape[1]), p=action.ravel()), value
-
     def choose_action(self, sess, s):
         shape = (1,) + self.s_len
         s = np.reshape(s, newshape=shape)
         action, value = sess.run([self.out_opr, self.value_opr], feed_dict={self.s: s})
         if self.model.is_continuous:
-            action = np.reshape(action, newshape=self.a_len)
+            action = np.reshape(action, newshape=self.a_dim)
             return action, value
         else:
-            return np.argmax(action.ravel()), value
+            action = np.argmax(action.ravel())
+            return action, value
