@@ -10,8 +10,8 @@ class GAE(FeatureTransform):
     n_step_rate : 0 < x < 1
     """
 
-    def __init__(self, state_len, action_len, action_dim, discount_rate, n_step_rate):
-        super(GAE, self).__init__(state_len, action_len, action_dim)
+    def __init__(self, state_len, action_len, action_dim, discount_rate, n_step_rate, is_continous):
+        super(GAE, self).__init__(state_len, action_len, action_dim, is_continous)
         self.discount_rate = discount_rate
         self.n_step_rate = n_step_rate
 

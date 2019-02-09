@@ -3,10 +3,11 @@ import numpy as np
 
 class FeatureTransform:
 
-    def __init__(self, state_len, action_len, action_dim):
+    def __init__(self, state_len, action_len, action_dim, is_continous):
         self.state_len = state_len
         self.action_len = action_len
         self.action_dim = action_dim
+        self.is_continous = is_continous
 
     def transform(self, episode):
         experience = episode.experience
@@ -15,7 +16,10 @@ class FeatureTransform:
         s = np.zeros(shape=(max_t,) + self.state_len)
         s_ = np.zeros(shape=(max_t,) + self.state_len)
         v = np.zeros(shape=(max_t+1, 1))
-        a = np.zeros(shape=(max_t,) + self.action_dim)
+        if self.is_continous:
+            a = np.zeros(shape=(max_t,) + self.action_dim)
+        else:
+            a = np.zeros(shape=max_t)
         r = np.zeros(shape=max_t)
 
         for t, exp in enumerate(experience):

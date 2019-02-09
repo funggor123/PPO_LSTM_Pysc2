@@ -22,13 +22,13 @@ class A2C:
         if model.is_continuous:
             self.a = tf.placeholder(tf.float32, shape=(None,) + action_space_dim, name="action")
         else:
-            self.a = tf.placeholder(tf.int32, shape=(None,) + action_space_dim, name="action")
+            self.a = tf.placeholder(tf.int32, shape=[None, ], name="action")
 
         self.policy_opr, self.params = model.make_actor_network(input_opr=self.s,
                                                                 name="target",
                                                                 train=True)
 
-        self.value_opr, _ = model.make_critic_network(input_opr=self.s,
+        self.value_opr, self.value_params = model.make_critic_network(input_opr=self.s,
                                                       name="value",
                                                       train=True)
         with tf.variable_scope('value_loss'):
@@ -106,14 +106,13 @@ class A2C:
         return tf.reduce_mean(exp)
 
     def __get_policy_discrete_loss_opr__(self, policy_out, a, td_error):
-        entropy = tf.reduce_sum(self.policy_opr[0] * tf.log(self.policy_opr[0]), axis=1)
-        exp = tf.nn.sparse_softmax_cross_entropy_with_logits(logits=policy_out[0], labels=a[0])
-        for i in range(1, len(self.a_dim)):
-            entropy = tf.reduce_sum(self.policy_opr[0] * tf.log(self.policy_opr[0]), axis=1) + entropy
-            exp = tf.nn.sparse_softmax_cross_entropy_with_logits(logits=policy_out[i], labels=a[
-                i]) + exp
-        exp = exp * td_error
-        return tf.reduce_mean(-exp)
+        log_prob = tf.reduce_sum(tf.log(policy_out) * tf.one_hot(a, self.action_space_length[0], dtype=tf.float32),
+                                 axis=1, keep_dims=True)
+        exp_v = log_prob * td_error
+        entropy = -tf.reduce_sum(policy_out * tf.log(policy_out), axis=1,
+                                 keep_dims=True)
+        aloss = self.reg_s * entropy + exp_v
+        return tf.reduce_mean(-aloss)
 
     def __get_policy_continous_loss_opr__(self, policy_out, a, td_error):
         entropy = policy_out.entropy() * self.reg_s
@@ -174,5 +173,5 @@ class A2C:
             action = np.reshape(action, newshape=self.a_dim)
             return action, value
         else:
-            action = np.argmax(action.ravel())
+            action = np.random.choice(range(action.shape[1]), p=action.ravel())
             return action, value

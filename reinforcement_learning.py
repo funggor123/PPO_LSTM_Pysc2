@@ -5,6 +5,7 @@ from train import Train
 from gae import GAE
 from model import Model
 from ppo import PPO
+from a2c import A2C
 
 
 def train_episode(sess, actor, environment, train):
@@ -51,17 +52,17 @@ def init():
     env = Environment(action_space_length=[2], observation_space_length=(3,), gym_string="Pendulum-v0",
                       max_step=200, batch_size=32, action_dim=(1,), is_continuous=True)
     gae = GAE(env.observation_space_length, env.action_space_length, action_dim=env.action_dim, discount_rate=0.90,
-              n_step_rate=1)
+              n_step_rate=1, is_continous=env.is_continuous)
     fn = Model(activation='elu', a_len=env.action_space_length, o_len=env.observation_space_length,
                is_continuous=env.is_continuous, a_bound=env.a_bound, a_dim=env.action_dim, num_layers=1, num_units=100)
     actor = PPO(observe_space_len=env.observation_space_length,
-                learning_rate=1e-4,
+                learning_rate=0.0001,
                 feature_transform=gae,
                 model=fn,
+                clip_r=0.1,
                 action_space_dim=env.action_dim,
-                clip_r=0.2,
                 action_space_length=env.action_space_length,
-                regularization_stength=0
+                regularization_stength=0.01
                 )
     train = Train(is_train=True, max_episode=5e5)
     return actor, env, train
