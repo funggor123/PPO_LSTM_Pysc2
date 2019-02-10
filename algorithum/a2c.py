@@ -82,7 +82,7 @@ class A2C:
         if model.is_continuous:
             self.policy_loss = self.get_con_policy_loss(self.policy_out, self.a, self.td_error)
             self.policy = tf.squeeze(self.policy_out.sample(1), axis=0)
-            self.policy = tf.clip_by_value(self.policy, -2, 2)
+            self.policy = tf.clip_by_value(self.policy, self.model.a_bound[0], self.model.a_bound[1])
         else:
             self.policy_loss = self.get_discrete_policy_loss(self.policy_out, self.a, self.td_error)
             self.policy = self.policy_out
