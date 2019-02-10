@@ -7,7 +7,7 @@ class PPO(A2C):
     def __init__(self, obs_dimension, a_dimension, lr, action_space_length, feature_transform,
                  epsilon, model, regular_str, minibatch, epoch):
         super(PPO, self).__init__(obs_dimension, a_dimension, action_space_length, lr,
-                                  feature_transform, model, regular_str, minibatch, epoch)
+                                  feature_transform, model, regular_str, minibatch, epoch, isa2c=False)
 
         self.value_old_out, self.policy_old_out, self.old_params = model.make_network(input_opr=self.batch['state'],
                                                                                       name="old",

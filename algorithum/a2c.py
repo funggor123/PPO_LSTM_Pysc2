@@ -5,7 +5,7 @@ import numpy as np
 class A2C:
 
     def __init__(self, obs_dimension, a_dimension, action_space_length, lr, feature_transform,
-                 model, regular_str, minibatch, epoch):
+                 model, regular_str, minibatch, epoch, isa2c=True):
 
         self.obs_dim = obs_dimension
         self.a_dim = a_dimension
@@ -18,73 +18,29 @@ class A2C:
         self.s = tf.placeholder(tf.float32, shape=(None,) + obs_dimension, name="state")
         self.v = tf.placeholder(tf.float32, shape=(None, 1), name="value")
         self.td_error = tf.placeholder(tf.float32, shape=(None, 1), name="td_error")
-        '''
-        if model.is_continuous:
-            self.a = tf.placeholder(tf.float32, shape=(None,) + a_dimension, name="action")
-        else:
-            self.a = tf.placeholder(tf.int32, shape=(None,) + a_dimension, name="action")
-
-        self.policy_opr, self.params = model.make_actor_network(input_opr=self.s,
-                                                                name="target",
-                                                                train=True)
-
-        self.value_opr, self.value_params = model.make_critic_network(input_opr=self.s,
-                                                                      name="value",
-                                                                      train=True)
-        with tf.variable_scope('value_loss'):
-            self.value_loss_opr = self.get_value_loss(self.value_opr, self.v)
-
-        if model.is_continuous:
-            with tf.variable_scope('continuous_policy_loss'):
-                self.policy_loss_opr = self.get_con_policy_loss(self.policy_opr, self.a, self.td_error)
-            with tf.variable_scope('sample_action'):
-                self.out_opr = tf.squeeze(self.policy_opr.sample(1), axis=0)
-                self.out_opr = tf.clip_by_value(self.out_opr, -2, 2)
-        else:
-            with tf.variable_scope('discrete_policy_loss'):
-                self.policy_loss_opr = self.get_discrete_policy_loss(self.policy_opr, self.a, self.td_error)
-                self.out_opr = self.policy_opr
-        with tf.variable_scope('total_loss'):
-            self.total_loss_opr = self.get_total_loss(self.value_loss_opr, self.policy_loss_opr)
-
-        self.global_step = tf.train.create_global_step()
-        self.optimizer_opr = self.get_optimizer(self.lr)
-        with tf.variable_scope('min_loss'):
-            self.min_policy_loss_opr = self.get_min(self.policy_loss_opr, self.optimizer_opr, self.global_step)
-            self.min_value_loss_opr = self.get_min_without_clip(self.value_loss_opr, self.optimizer_opr)
-            self.min_total_loss_opr = self.get_min(self.total_loss_opr, self.optimizer_opr,
-                                                           self.global_step)
-        self.init_opr = tf.global_variables_initializer()
-        self.saver_opr = tf.train.Saver()
-        
-        '''
-
-        '''
-        self.summary_opr = tf.summary.merge_all()
-        '''
-
-        '''
-        self.writer = tf.summary.FileWriter("TensorBoard/", graph=graph)
-        self.graph = graph
-        '''
 
         if model.is_continuous:
             self.a = tf.placeholder(tf.float32, shape=(None,) + a_dimension, name="action")
         else:
             self.a = tf.placeholder(tf.int32, shape=[None, ], name="action")
 
-        self.dataset = tf.data.Dataset.from_tensor_slices({"state": self.s, "actions": self.a,
-                                                           "rewards": self.v, "advantage": self.td_error})
-        self.dataset = self.dataset.shuffle(buffer_size=10000)
-        self.dataset = self.dataset.batch(minibatch)
-        self.dataset = self.dataset.cache()
-        self.dataset = self.dataset.repeat(epoch)
-        self.iterator = self.dataset.make_initializable_iterator()
-        self.batch = self.iterator.get_next()
+        if isa2c is False:
+            self.dataset = tf.data.Dataset.from_tensor_slices({"state": self.s, "actions": self.a,
+                                                               "rewards": self.v, "advantage": self.td_error})
+            self.dataset = self.dataset.shuffle(buffer_size=10000)
+            self.dataset = self.dataset.batch(minibatch)
+            self.dataset = self.dataset.cache()
+            self.dataset = self.dataset.repeat(epoch)
+            self.iterator = self.dataset.make_initializable_iterator()
+            self.batch = self.iterator.get_next()
 
-        self.value_out, self.policy_out, self.params = model.make_network(input_opr=self.batch['state'],
-                                                                          name="target",
-                                                                          train=True)
+            self.value_out, self.policy_out, self.params = model.make_network(input_opr=self.batch['state'],
+                                                                              name="target",
+                                                                              train=True)
+        else:
+            self.value_out, self.policy_out, self.params = model.make_network(input_opr=self.s,
+                                                                              name="target",
+                                                                              train=True)
 
         self.value_eval, self.policy_eval, _ = model.make_network(self.s, 'target', reuse=True)
 
