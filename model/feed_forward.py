@@ -10,6 +10,8 @@ class Model:
         self.obs_dimension = obs_dimension
         self.a_dimension = a_dimension
         self.is_continuous = is_continuous
+        self.policy_dense_unit = 100
+        self.critic_dense_unit = 100
 
     def discrete_policy_output_layer(self, fc1, train, init):
         return layers.dense(fc1, units=2, activation=tf.nn.softmax, kernel_initializer=init, trainable=train)
@@ -29,7 +31,7 @@ class Model:
     def make_actor_network(self, input_opr, name, train=True):
         w_init = tf.random_normal_initializer(0., .1)
         with tf.variable_scope(name):
-            fc1 = layers.dense(input_opr, units=200, activation=tf.nn.relu6,
+            fc1 = layers.dense(input_opr, units=self.policy_dense_unit, activation=tf.nn.relu6,
                                      trainable=train, kernel_initializer=w_init)
             if self.is_continuous:
                 policy_out = self.continuous_policy_output_layer(fc1, train, None)
@@ -42,7 +44,7 @@ class Model:
     def make_critic_network(self, input_opr, name, train=True):
         w_init = tf.random_normal_initializer(0., .1)
         with tf.variable_scope(name):
-            fc1 = layers.dense(input_opr, units=100, activation=tf.nn.relu6, kernel_initializer=w_init, trainable=train)
+            fc1 = layers.dense(input_opr, units=self.critic_dense_unit, activation=tf.nn.relu6, kernel_initializer=w_init, trainable=train)
             value_out = self.value_output_layer(fc1, train, None)
         params = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope=name)
         return value_out, params
@@ -69,3 +71,5 @@ class Model:
 
         return value_out, policy_out, params
     '''
+
+

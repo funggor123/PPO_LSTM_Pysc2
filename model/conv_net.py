@@ -43,25 +43,4 @@ class ConvNet(Model):
 
         return value_out, policy_out, params, fc1
 
-    def discrete_policy_output_layer(self, fc1, train, init):
-        policy_out = []
-        for val in self.a_len:
-            policy_out.append(layers.dense(fc1, units=val, activation=self.activation,
-                                           kernel_initializer=init, trainable=train))
 
-        value_out = layers.dense(fc1, units=1, activation=self.activation, kernel_initializer=init,
-                                 trainable=train)
-        return value_out, policy_out
-
-    def continuous_policy_output_layer(self, fc1, train, init):
-        value_out = layers.dense(fc1, units=1, activation=self.activation, kernel_initializer=init,
-                                 trainable=train)
-        mu = layers.dense(fc1, self.a_dimension, activation="tanh", kernel_initializer=init,
-                          trainable=train)
-        sigma = layers.dense(fc1, self.a_dimension, activation="softplus", kernel_initializer=init,
-                             trainable=train)
-        mu = mu * self.a_bound[1]
-        sigma = sigma + 1e-4
-        policy_out = tf.distributions.Normal(loc=tf.reduce_mean(mu), scale=tf.reduce_mean(sigma))
-
-        return value_out, policy_out

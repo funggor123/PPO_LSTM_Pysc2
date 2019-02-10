@@ -18,9 +18,9 @@ def get_car_pole():
                 epsilon=0.1,
                 a_dimension=env.action_space_dimension,
                 action_space_length=env.discrete_action_bound,
-                regular_str=0.01
+                regular_str=0.01,
                 )
-    train = Train(train=True, max_episode=5e5, max_step=200, batch_size=200)
+    train = Train(train=True, max_episode=5e5, max_step=400, batch_size=200)
     return actor, env, train
 
 
@@ -37,7 +37,7 @@ def get_pendulum():
                 epsilon=0.1,
                 a_dimension=env.action_space_dimension,
                 action_space_length=env.discrete_action_bound,
-                regular_str=0.01
+                regular_str=1e-2,
                 )
     train = Train(train=True, max_episode=5e5, max_step=200, batch_size=32)
     return actor, env, train

@@ -18,6 +18,55 @@ class A2C:
         self.s = tf.placeholder(tf.float32, shape=(None,) + obs_dimension, name="state")
         self.v = tf.placeholder(tf.float32, shape=(None, 1), name="value")
         self.td_error = tf.placeholder(tf.float32, shape=(None, 1), name="td_error")
+        '''
+        if model.is_continuous:
+            self.a = tf.placeholder(tf.float32, shape=(None,) + a_dimension, name="action")
+        else:
+            self.a = tf.placeholder(tf.int32, shape=(None,) + a_dimension, name="action")
+
+        self.policy_opr, self.params = model.make_actor_network(input_opr=self.s,
+                                                                name="target",
+                                                                train=True)
+
+        self.value_opr, self.value_params = model.make_critic_network(input_opr=self.s,
+                                                                      name="value",
+                                                                      train=True)
+        with tf.variable_scope('value_loss'):
+            self.value_loss_opr = self.get_value_loss(self.value_opr, self.v)
+
+        if model.is_continuous:
+            with tf.variable_scope('continuous_policy_loss'):
+                self.policy_loss_opr = self.get_con_policy_loss(self.policy_opr, self.a, self.td_error)
+            with tf.variable_scope('sample_action'):
+                self.out_opr = tf.squeeze(self.policy_opr.sample(1), axis=0)
+                self.out_opr = tf.clip_by_value(self.out_opr, -2, 2)
+        else:
+            with tf.variable_scope('discrete_policy_loss'):
+                self.policy_loss_opr = self.get_discrete_policy_loss(self.policy_opr, self.a, self.td_error)
+                self.out_opr = self.policy_opr
+        with tf.variable_scope('total_loss'):
+            self.total_loss_opr = self.get_total_loss(self.value_loss_opr, self.policy_loss_opr)
+
+        self.global_step = tf.train.create_global_step()
+        self.optimizer_opr = self.get_optimizer(self.lr)
+        with tf.variable_scope('min_loss'):
+            self.min_policy_loss_opr = self.get_min(self.policy_loss_opr, self.optimizer_opr, self.global_step)
+            self.min_value_loss_opr = self.get_min_without_clip(self.value_loss_opr, self.optimizer_opr)
+            self.min_total_loss_opr = self.get_min(self.total_loss_opr, self.optimizer_opr,
+                                                           self.global_step)
+        self.init_opr = tf.global_variables_initializer()
+        self.saver_opr = tf.train.Saver()
+        
+        '''
+
+        '''
+        self.summary_opr = tf.summary.merge_all()
+        '''
+
+        '''
+        self.writer = tf.summary.FileWriter("TensorBoard/", graph=graph)
+        self.graph = graph
+        '''
 
         if model.is_continuous:
             self.a = tf.placeholder(tf.float32, shape=(None,) + a_dimension, name="action")
@@ -56,9 +105,7 @@ class A2C:
         self.saver = tf.train.Saver()
 
         '''
-         self.summary_opr = tf.summary.merge_all()
-         '''
-        '''
+        self.summary_opr = tf.summary.merge_all()
         self.writer = tf.summary.FileWriter("TensorBoard/", graph=graph)
         self.graph = graph
         '''
@@ -104,18 +151,17 @@ class A2C:
         return tf.reduce_mean(exp)
 
     def get_discrete_policy_loss(self, policy_out, a, td_error):
-        log_prob = tf.reduce_sum(tf.log(policy_out) * tf.one_hot(a, self.action_space_length[0], dtype=tf.float32),
-                                 axis=1, keep_dims=True)
-        loss = log_prob * td_error
         entropy = -tf.reduce_sum(policy_out * tf.log(policy_out), axis=1,
-                                 keep_dims=True)
-        policy_loss = self.reg_str * entropy + loss
-        return tf.reduce_mean(-policy_loss)
+                                 keepdims=True)
+        log_prob = tf.reduce_sum(tf.log(policy_out) * tf.one_hot(a, self.action_space_length[0], dtype=tf.float32),
+                                 axis=1, keepdims=True)
+        loss = log_prob * td_error
+        return tf.reduce_mean(-loss) + tf.reduce_mean(-entropy) * self.reg_str
 
     def get_con_policy_loss(self, policy_out, a, td_error):
-        entropy = policy_out.entropy() * self.reg_str
+        entropy = policy_out.entropy()
         loss = policy_out.log_prob(a) * td_error
-        return tf.reduce_mean(-loss) - tf.reduce_mean(entropy)
+        return tf.reduce_mean(-loss) + tf.reduce_mean(-entropy) * self.reg_str
 
     def get_total_loss(self, value_loss, policy_loss):
         return tf.add(value_loss, policy_loss)
