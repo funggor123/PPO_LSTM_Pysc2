@@ -5,7 +5,7 @@ import numpy as np
 class A2C:
 
     def __init__(self, obs_dimension, a_dimension, action_space_length, lr, feature_transform,
-                 model, regular_str):
+                 model, regular_str, minibatch, epoch):
 
         self.obs_dim = obs_dimension
         self.a_dim = a_dimension
@@ -73,18 +73,29 @@ class A2C:
         else:
             self.a = tf.placeholder(tf.int32, shape=[None, ], name="action")
 
-        self.value_out, self.policy_out, self.params = model.make_network(input_opr=self.s,
+        self.dataset = tf.data.Dataset.from_tensor_slices({"state": self.s, "actions": self.a,
+                                                           "rewards": self.v, "advantage": self.td_error})
+        self.dataset = self.dataset.shuffle(buffer_size=10000)
+        self.dataset = self.dataset.batch(minibatch)
+        self.dataset = self.dataset.cache()
+        self.dataset = self.dataset.repeat(epoch)
+        self.iterator = self.dataset.make_initializable_iterator()
+        self.batch = self.iterator.get_next()
+
+        self.value_out, self.policy_out, self.params = model.make_network(input_opr=self.batch['state'],
                                                                           name="target",
                                                                           train=True)
+
+        self.value_eval, self.policy_eval, _ = model.make_network(self.s, 'target', reuse=True)
 
         self.value_loss = self.get_value_loss(self.value_out, self.v)
 
         if model.is_continuous:
             self.policy_loss = self.get_con_policy_loss(self.policy_out, self.a, self.td_error)
-            self.policy = tf.squeeze(self.policy_out.sample(1), axis=0)
+            self.policy = tf.squeeze(self.policy_eval.sample(1), axis=0)
         else:
             self.policy_loss = self.get_discrete_policy_loss(self.policy_out, self.a, self.td_error)
-            self.policy = self.policy_out
+            self.policy = self.policy_eval
 
         self.total_loss = self.get_total_loss(self.value_loss, self.policy_loss)
 
@@ -175,7 +186,7 @@ class A2C:
 
     def get_value(self, sess, s):
         s = np.reshape(s, newshape=(1,) + self.obs_dim)
-        value = sess.run(self.value_out, feed_dict={self.s: s})
+        value = sess.run(self.value_eval, feed_dict={self.s: s})
         return value
 
     def learn(self, sess, episode):
@@ -195,8 +206,9 @@ class A2C:
     def choose_action(self, sess, s):
         shape = (1,) + self.obs_dim
         s = np.reshape(s, newshape=shape)
-        action, value = sess.run([self.policy, self.value_out], feed_dict={self.s: s})
+        action, value = sess.run([self.policy, self.value_eval], feed_dict={self.s: s})
         if self.model.is_continuous:
+            action = np.clip(action, self.model.a_bound[0], self.model.a_bound[1])
             action = np.reshape(action, newshape=self.a_dim)
             return action, value
         else:

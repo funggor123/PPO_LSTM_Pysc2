@@ -19,6 +19,8 @@ def get_car_pole():
                 a_dimension=env.action_space_dimension,
                 action_space_length=env.discrete_action_bound,
                 regular_str=0.01,
+                minibatch=32,
+                epoch=10
                 )
     train = Train(train=True, max_episode=5e5, max_step=400, batch_size=200)
     return actor, env, train
@@ -38,8 +40,10 @@ def get_pendulum():
                 a_dimension=env.action_space_dimension,
                 action_space_length=env.discrete_action_bound,
                 regular_str=1e-2,
+                minibatch=32,
+                epoch=10
                 )
-    train = Train(train=True, max_episode=5e5, max_step=200, batch_size=32)
+    train = Train(train=True, max_episode=5e5, max_step=10000, batch_size=8192)
     return actor, env, train
 
 def get_racing():
@@ -56,7 +60,9 @@ def get_racing():
                 a_dimension=env.action_space_dimension,
                 action_space_length=env.discrete_action_bound,
                 regular_str=1e-2,
+                minibatch=32,
+                epoch=10
                 )
-    train = Train(train=True, max_episode=5e5, max_step=200, batch_size=32)
+    train = Train(train=True, max_episode=5e5, max_step=200, batch_size=32, print_every_episode=1)
     return actor, env, train
 
