@@ -9,16 +9,11 @@ class PPO(A2C):
         super(PPO, self).__init__(obs_dimension, a_dimension, action_space_length, lr,
                                   feature_transform, model, regular_str)
 
-        self.policy_old_out, self.policy_old_params = model.make_actor_network(input_opr=self.s,
-                                                                               name="old_policy",
-                                                                               train=False)
+        self.value_old_out, self.policy_old_out, self.old_params = model.make_network(input_opr=self.s,
+                                                                                      name="old",
+                                                                                      train=False)
 
-        self.value_old_out, self.value_old_params = model.make_critic_network(input_opr=self.s,
-                                                                              name="old_value",
-                                                                              train=False)
-
-        self.sync_old_policy = self.get_sync_old(self.policy_params, self.policy_old_params)
-        self.sync_old_value = self.get_sync_old(self.value_params, self.value_old_params)
+        self.sync_network = self.get_sync_old(self.params, self.old_params)
 
         if self.model.is_continuous:
             entropy = self.policy_out.entropy()
@@ -55,8 +50,7 @@ class PPO(A2C):
         return [old_params.assign(params) for params, old_params in zip(params, old_params)]
 
     def sync_old(self, sess):
-        sess.run(self.sync_old_policy)
-        sess.run(self.sync_old_value)
+        sess.run(self.sync_network)
 
     def get_discrete_prob(self, policy_out, a):
         return tf.reduce_sum(policy_out * tf.one_hot(a, self.action_space_length[0], dtype=tf.float32),

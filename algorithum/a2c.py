@@ -73,13 +73,9 @@ class A2C:
         else:
             self.a = tf.placeholder(tf.int32, shape=[None, ], name="action")
 
-        self.policy_out, self.policy_params = model.make_actor_network(input_opr=self.s,
-                                                                       name="target",
-                                                                       train=True)
-
-        self.value_out, self.value_params = model.make_critic_network(input_opr=self.s,
-                                                                      name="value",
-                                                                      train=True)
+        self.value_out, self.policy_out, self.params = model.make_network(input_opr=self.s,
+                                                                          name="target",
+                                                                          train=True)
 
         self.value_loss = self.get_value_loss(self.value_out, self.v)
 

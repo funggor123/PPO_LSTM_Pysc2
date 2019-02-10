@@ -26,6 +26,21 @@ class Model:
         value_out = layers.dense(fc1, units=1, trainable=train)
         return value_out
 
+    def make_network(self, input_opr, name, train=True):
+        with tf.variable_scope(name):
+            fc1 = layers.dense(input_opr, units=self.num_unit, activation=tf.nn.relu6,
+                               trainable=train)
+            value_out = self.value_output_layer(fc1, train)
+
+            if self.is_continuous:
+                policy_out = self.continuous_policy_output_layer(fc1, train)
+            else:
+                policy_out = self.discrete_policy_output_layer(fc1, train)
+
+        params = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope=name)
+
+        return value_out, policy_out, params
+
     def make_actor_network(self, input_opr, name, train=True):
         with tf.variable_scope(name):
             fc1 = layers.dense(input_opr, units=self.num_unit, activation=tf.nn.relu6,
