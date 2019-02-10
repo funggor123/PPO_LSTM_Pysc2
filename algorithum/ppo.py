@@ -19,10 +19,14 @@ class PPO(A2C):
             entropy = self.policy_out.entropy()
             ratio = self.policy_out.prob(self.batch["actions"]) / self.policy_old_out.prob(self.batch["actions"])
         else:
-            entropy = tf.reduce_sum(self.policy_out * tf.log(self.policy_out), axis=1, keepdims=True)
-            ratio = self.get_discrete_prob(self.policy_out, self.batch["actions"]) / self.get_discrete_prob(
-                self.policy_old_out,
-                self.batch["actions"])
+            if self.model.isCat:
+                entropy = self.policy_out.entropy()
+                ratio = self.policy_out.prob(self.batch["actions"]) / self.policy_old_out.prob(self.batch["actions"])
+            else:
+                entropy = tf.reduce_sum(self.policy_out * tf.log(self.policy_out), axis=1, keepdims=True)
+                ratio = self.get_discrete_prob(self.policy_out, self.batch["actions"]) / self.get_discrete_prob(
+                    self.policy_old_out,
+                    self.batch["actions"])
 
         surr = ratio * self.batch["advantage"]
         ratio_clip_opr = tf.clip_by_value(ratio,

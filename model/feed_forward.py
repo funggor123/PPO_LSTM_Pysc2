@@ -4,16 +4,21 @@ from tensorflow import layers
 
 class Model:
 
-    def __init__(self, a_len, a_dimension, obs_dimension, is_continuous, a_bound):
+    def __init__(self, a_len, a_dimension, obs_dimension, is_continuous, a_bound, is_cat=False):
         self.a_len = a_len
         self.a_bound = a_bound
         self.obs_dimension = obs_dimension
         self.a_dimension = a_dimension
         self.is_continuous = is_continuous
         self.num_unit = 100
+        self.isCat = is_cat
 
     def discrete_policy_output_layer(self, fc1, train):
-        return layers.dense(fc1, units=2, activation=tf.nn.softmax, trainable=train)
+        if self.isCat is True:
+            a_logits = tf.layers.dense(fc1, 2, trainable=train)
+            return tf.distributions.Categorical(logits=a_logits)
+        else:
+            return layers.dense(fc1, units=2, activation=tf.nn.softmax, trainable=train)
 
     def continuous_policy_output_layer(self, fc1, train):
         log_sigma = tf.get_variable(name="pi_sigma", shape=self.a_dimension, initializer=tf.zeros_initializer(), trainable=train)

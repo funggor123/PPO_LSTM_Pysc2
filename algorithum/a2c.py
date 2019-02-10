@@ -51,7 +51,10 @@ class A2C:
             self.policy = tf.squeeze(self.policy_eval.sample(1), axis=0)
         else:
             self.policy_loss = self.get_discrete_policy_loss(self.policy_out, self.a, self.td_error)
-            self.policy = self.policy_eval
+            if self.model.isCat:
+                self.policy = self.policy_eval.mode()
+            else:
+                self.policy = self.policy_eval
 
         self.total_loss = self.get_total_loss(self.value_loss, self.policy_loss)
 
@@ -113,12 +116,17 @@ class A2C:
         return tf.reduce_mean(exp)
 
     def get_discrete_policy_loss(self, policy_out, a, td_error):
-        entropy = -tf.reduce_sum(policy_out * tf.log(policy_out), axis=1,
+        if self.model.isCat:
+            entropy = policy_out.entropy()
+            loss = policy_out.log_prob(a) * td_error
+            return tf.reduce_mean(-loss) + tf.reduce_mean(-entropy) * self.reg_str
+        else:
+            entropy = -tf.reduce_sum(policy_out * tf.log(policy_out), axis=1,
                                  keepdims=True)
-        log_prob = tf.reduce_sum(tf.log(policy_out) * tf.one_hot(a, self.action_space_length[0], dtype=tf.float32),
+            log_prob = tf.reduce_sum(tf.log(policy_out) * tf.one_hot(a, self.action_space_length[0], dtype=tf.float32),
                                  axis=1, keepdims=True)
-        loss = log_prob * td_error
-        return tf.reduce_mean(-loss) + tf.reduce_mean(-entropy) * self.reg_str
+            loss = log_prob * td_error
+            return tf.reduce_mean(-loss) + tf.reduce_mean(-entropy) * self.reg_str
 
     def get_con_policy_loss(self, policy_out, a, td_error):
         entropy = policy_out.entropy()
@@ -168,5 +176,8 @@ class A2C:
             action = np.reshape(action, newshape=self.a_dim)
             return action, value
         else:
-            action = np.random.choice(range(action.shape[1]), p=action.ravel())
+            if self.model.isCat:
+                action = action[0]
+            else:
+                action = np.random.choice(range(action.shape[1]), p=action.ravel())
             return action, value

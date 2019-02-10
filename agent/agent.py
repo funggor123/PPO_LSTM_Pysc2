@@ -27,7 +27,9 @@ def train_episode(sess, actor, environment, train):
 
         exp = Experience()
         exp.set_all(reward=((reward + 8) / 8), action=action, last_state_obs=last_state_observation, current_state_obs=observation, last_state_value=value)
-
+        '''
+        (reward + 8) / 8)
+        '''
         episode.add_experience(exp)
         episode.add_reward(reward)
         if done or train.stop_to_learn(current_step=step):
@@ -48,4 +50,4 @@ def train_episode(sess, actor, environment, train):
 
 
 def init():
-    return ps.get_pendulum()
+    return ps.get_pendulumPPO()
