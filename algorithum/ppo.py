@@ -37,9 +37,9 @@ class PPO(A2C):
         entropy = tf.reduce_mean(entropy) * - self.reg_str
         self.policy_loss_opr = -tf.reduce_mean(exp) + entropy
 
-        clipped_value = self.value_old_out + tf.clip_by_value(self.v - self.value_old_out, -epsilon, epsilon)
+        clipped_value = self.value_old_out + tf.clip_by_value(self.value_out - self.value_old_out, -epsilon, epsilon)
         loss_vf1 = tf.squared_difference(clipped_value, self.v)
-        loss_vf2 = tf.squared_difference(self.v, self.value_out)
+        loss_vf2 = tf.squared_difference(self.value_out, self.v)
         self.value_loss_opr = tf.reduce_mean(tf.maximum(loss_vf1, loss_vf2)) * 0.5
 
         self.min_policy_loss_opr = self.get_min(self.policy_loss_opr, self.optimizer, self.global_step)
@@ -49,30 +49,6 @@ class PPO(A2C):
 
         self.init_opr = tf.global_variables_initializer()
         self.saver_opr = tf.train.Saver()
-        ''''''
-        '''
-        if self.model.is_continuous:
-            entropy = self.policy_out.entropy()
-            ratio = self.policy_out.prob(self.a) / self.policy_old_out.prob(self.a)
-        else:
-            entropy = tf.reduce_sum(self.policy_out * tf.log(self.policy_out), axis=1, keep_dims=True)
-            ratio = self.get_discrete_prob(self.policy_out, self.a) / self.get_discrete_prob(self.policy_old_out,
-                                                                                             self.a)
-
-        surr1 = self.td_error * ratio
-        surr2 = self.td_error * tf.clip_by_value(ratio,
-                                                 1 - epsilon,
-                                                 1 + epsilon)
-
-        loss = -tf.reduce_mean(tf.minimum(surr1, surr2))
-        entropy = -self.reg_str * tf.reduce_mean(entropy)
-        self.policy_loss = loss + entropy
-
-        clipped_value = self.value_old_out + tf.clip_by_value(self.v - self.value_old_out, -epsilon, epsilon)
-        loss_vf1 = tf.squared_difference(clipped_value, self.value_out)
-        loss_vf2 = tf.squared_difference(self.v, self.value_out)
-        self.value_loss = tf.reduce_mean(tf.maximum(loss_vf1, loss_vf2)) * 0.5
-        '''
 
     def get_sync_old(self, params, old_params):
         return [old_params.assign(params) for params, old_params in zip(params, old_params)]
