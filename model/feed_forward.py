@@ -16,9 +16,9 @@ class Model:
         return layers.dense(fc1, units=2, activation=tf.nn.softmax, trainable=train)
 
     def continuous_policy_output_layer(self, fc1, train):
-        log_sigma = tf.get_variable(name="pi_sigma", shape=1, initializer=tf.zeros_initializer(), trainable=train)
+        log_sigma = tf.get_variable(name="pi_sigma", shape=self.a_dimension, initializer=tf.zeros_initializer(), trainable=train)
         bound = (self.a_bound[1] - self.a_bound[0]) / 2
-        mu = tf.layers.dense(fc1, units=1, activation=tf.nn.tanh, trainable=train) * bound
+        mu = tf.layers.dense(fc1, units=self.a_dimension[0], activation=tf.nn.tanh, trainable=train) * bound
         policy_out = tf.contrib.distributions.Normal(loc=mu, scale=tf.maximum(tf.exp(log_sigma), 0.0))
         return policy_out
 

@@ -41,6 +41,7 @@ class PPO(A2C):
         loss_vf1 = tf.squared_difference(clipped_value, self.v)
         loss_vf2 = tf.squared_difference(self.value_out, self.v)
         self.value_loss_opr = tf.reduce_mean(tf.maximum(loss_vf1, loss_vf2)) * 0.5
+        self.total_loss = self.value_loss_opr + self.policy_loss_opr
 
         self.min_policy_loss_opr = self.get_min(self.policy_loss_opr, self.optimizer, self.global_step)
         self.min_value_loss_opr = self.get_min_without_clip(self.value_loss_opr, self.optimizer)
@@ -72,14 +73,10 @@ class PPO(A2C):
                      }
 
         for _ in range(10):
-            _, loss, global_step = self.update(sess, self.min_policy_loss_opr,
-                                               self.policy_loss_opr,
+            _, loss, global_step = self.update(sess, self.min_total_loss,
+                                               self.total_loss,
                                                self.global_step,
                                                feed_dict)
             episode.loss = loss
-            _, loss, global_step = self.update(sess, self.min_value_loss_opr,
-                                               self.value_loss_opr,
-                                               self.global_step,
-                                               feed_dict)
 
         return episode
