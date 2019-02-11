@@ -26,7 +26,7 @@ def train_episode(sess, actor, environment, train):
         observation, reward, done, info = env.step(action)
 
         exp = Experience()
-        exp.set_all(reward=((reward + 8) / 8), action=action, last_state_obs=last_state_observation, current_state_obs=observation, last_state_value=value)
+        exp.set_all(reward=reward, action=action, last_state_obs=last_state_observation, current_state_obs=observation, last_state_value=value)
         '''
         (reward + 8) / 8)
         '''
@@ -50,4 +50,4 @@ def train_episode(sess, actor, environment, train):
 
 
 def init():
-    return ps.get_pendulumPPO()
+    return ps.get_racingPPO_LSTM()

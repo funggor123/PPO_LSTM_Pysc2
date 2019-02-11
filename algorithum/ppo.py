@@ -5,15 +5,31 @@ import tensorflow as tf
 class PPO(A2C):
 
     def __init__(self, obs_dimension, a_dimension, lr, action_space_length, feature_transform,
-                 epsilon, model, regular_str, minibatch, epoch):
+                 epsilon, model, regular_str, minibatch, epoch, is_seperate=False):
         super(PPO, self).__init__(obs_dimension, a_dimension, action_space_length, lr,
-                                  feature_transform, model, regular_str, minibatch, epoch, isa2c=False)
+                                  feature_transform, model, regular_str, minibatch, epoch, isa2c=False, is_seperate=is_seperate)
 
-        self.value_old_out, self.policy_old_out, self.old_params = model.make_network(input_opr=self.batch['state'],
+        if self.is_seperate:
+            self.policy_old_out, self.old_params = model.make_actor_network(input_opr=self.batch['state'],
+                                                                            name="old",
+                                                                            batch_size=minibatch,
+                                                                            train=False)
+
+            self.value_old_out, self.old_value_params = model.make_critic_network(input_opr=self.batch['state'],
+                                                                                  name="old_value",
+                                                                                  batch_size=minibatch,
+                                                                                  train=False)
+        else:
+            self.value_old_out, self.policy_old_out, self.old_params, _, _ = model.make_network(input_opr=self.batch['state'],
                                                                                       name="old",
+                                                                                      batch_size=minibatch,
                                                                                       train=False)
 
-        self.sync_network = self.get_sync_old(self.params, self.old_params)
+        if self.is_seperate:
+            self.sync_network = self.get_sync_old(self.params, self.old_params)
+            self.sync_network2 = self.get_sync_old(self.value_params, self.old_value_params)
+        else:
+            self.sync_network = self.get_sync_old(self.params, self.old_params)
 
         if self.model.is_continuous:
             entropy = self.policy_out.entropy()
@@ -48,14 +64,18 @@ class PPO(A2C):
         self.min_total_loss_opr = self.get_min(self.total_loss, self.optimizer,
                                                self.global_step)
 
-        self.init_opr = tf.global_variables_initializer()
-        self.saver_opr = tf.train.Saver()
+        self.init = tf.global_variables_initializer()
+        self.saver = tf.train.Saver()
 
     def get_sync_old(self, params, old_params):
         return [old_params.assign(params) for params, old_params in zip(params, old_params)]
 
     def sync_old(self, sess, feed_dict):
-        sess.run([self.sync_network, self.iterator.initializer], feed_dict=feed_dict)
+        if self.is_seperate:
+            sess.run([self.sync_network, self.iterator.initializer], feed_dict=feed_dict)
+            sess.run(self.sync_network2)
+        else:
+            sess.run([self.sync_network, self.iterator.initializer], feed_dict=feed_dict)
 
     def get_discrete_prob(self, policy_out, a):
         return tf.reduce_sum(policy_out * tf.one_hot(a, self.action_space_length[0], dtype=tf.float32),

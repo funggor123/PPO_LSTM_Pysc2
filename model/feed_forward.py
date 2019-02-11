@@ -31,7 +31,7 @@ class Model:
         value_out = layers.dense(fc1, units=1, trainable=train)
         return value_out
 
-    def make_network(self, input_opr, name, train=True, reuse=False):
+    def make_network(self, input_opr, name, train=True, reuse=False, batch_size=0):
         with tf.variable_scope(name, reuse=reuse):
             fc1 = layers.dense(input_opr, units=self.num_unit, activation=tf.nn.relu6,
                                trainable=train)
@@ -44,11 +44,11 @@ class Model:
 
         params = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope=name)
 
-        return value_out, policy_out, params
+        return value_out, policy_out, params, None, None
 
-    def make_actor_network(self, input_opr, name, train=True):
-        with tf.variable_scope(name):
-            fc1 = layers.dense(input_opr, units=self.num_unit, activation=tf.nn.relu6,
+    def make_actor_network(self, input_opr, name, train=True, reuse=False):
+        with tf.variable_scope(name, reuse=reuse):
+            fc1 = layers.dense(input_opr, units=200, activation=tf.nn.relu6,
                                trainable=train)
             if self.is_continuous:
                 policy_out = self.continuous_policy_output_layer(fc1, train)
@@ -58,9 +58,9 @@ class Model:
         params = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope=name)
         return policy_out, params
 
-    def make_critic_network(self, input_opr, name, train=True):
-        with tf.variable_scope(name):
-            fc1 = layers.dense(input_opr, units=self.num_unit, activation=tf.nn.relu6, trainable=train)
+    def make_critic_network(self, input_opr, name, train=True, reuse=False):
+        with tf.variable_scope(name, reuse=reuse):
+            fc1 = layers.dense(input_opr, units=100, activation=tf.nn.relu6, trainable=train)
             value_out = self.value_output_layer(fc1, train)
         params = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope=name)
         return value_out, params

@@ -8,7 +8,7 @@ class ConvNet(Model):
     def __init__(self, a_len, a_dimension, obs_dimension, is_continuous, a_bound):
         super(ConvNet, self).__init__(a_len, a_dimension, obs_dimension, is_continuous, a_bound)
 
-    def make_network(self, input_opr, name, train=True):
+    def make_network(self, input_opr, name, train=True, reuse=False, batch_size=0):
         with tf.variable_scope(name):
             conv1 = tf.layers.conv2d(inputs=input_opr, filters=32, kernel_size=8, strides=4, activation=tf.nn.relu6, trainable=train)
             conv2 = tf.layers.conv2d(inputs=conv1, filters=64, kernel_size=4, strides=2, activation=tf.nn.relu6, trainable=train)
@@ -27,7 +27,7 @@ class ConvNet(Model):
 
         params = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope=name)
 
-        return value_out, policy_out, params
+        return value_out, policy_out, params, None, None
 
 
 

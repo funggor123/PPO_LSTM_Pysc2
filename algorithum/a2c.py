@@ -5,7 +5,7 @@ import numpy as np
 class A2C:
 
     def __init__(self, obs_dimension, a_dimension, action_space_length, lr, feature_transform,
-                 model, regular_str, minibatch, epoch, isa2c=True):
+                 model, regular_str, minibatch, epoch, isa2c=True, is_seperate=False):
 
         self.obs_dim = obs_dimension
         self.a_dim = a_dimension
@@ -14,6 +14,7 @@ class A2C:
         self.reg_str = regular_str
         self.action_space_length = action_space_length
         self.feature_t = feature_transform
+        self.is_seperate = is_seperate
 
         self.s = tf.placeholder(tf.float32, shape=(None,) + obs_dimension, name="state")
         self.v = tf.placeholder(tf.float32, shape=(None, 1), name="value")
@@ -34,15 +35,32 @@ class A2C:
             self.iterator = self.dataset.make_initializable_iterator()
             self.batch = self.iterator.get_next()
 
-            self.value_out, self.policy_out, self.params = model.make_network(input_opr=self.batch['state'],
-                                                                              name="target",
-                                                                              train=True)
+            if self.is_seperate:
+                self.policy_out, self.params = model.make_actor_network(input_opr=self.batch['state'],
+                                                                        name="target",
+                                                                        train=True,
+                                                                        batch_size=minibatch
+                                                                        )
+                self.value_out, self.value_params = model.make_critic_network(input_opr=self.batch['state'],
+                                                                              name="target_value",
+                                                                              train=True,
+                                                                              batch_size=minibatch
+                                                                              )
+            else:
+                self.value_out, self.policy_out, self.params, self.i_state, self.f_state = model.make_network(input_opr=self.batch['state'],
+                                                                                  name="target",
+                                                                                  batch_size=minibatch,
+                                                                                  train=True)
         else:
-            self.value_out, self.policy_out, self.params = model.make_network(input_opr=self.s,
+            self.value_out, self.policy_out, self.params, self.i_state, self.f_state = model.make_network(input_opr=self.s,
                                                                               name="target",
+                                                                              batch_size=minibatch,
                                                                               train=True)
-
-        self.value_eval, self.policy_eval, _ = model.make_network(self.s, 'target', reuse=True)
+        if self.is_seperate:
+            self.policy_eval, _ = model.make_actor_network(self.s, 'target', batch_size=1, reuse=True)
+            self.value_eval, _ = model.make_critic_network(self.s, 'target_value', batch_size=1, reuse=True)
+        else:
+            self.value_eval, self.policy_eval, _, self.eval_i_state, self.eval_f_state = model.make_network(self.s, 'target', reuse=True, batch_size=1)
 
         self.value_loss = self.get_value_loss(self.value_out, self.v)
 
@@ -122,9 +140,9 @@ class A2C:
             return tf.reduce_mean(-loss) + tf.reduce_mean(-entropy) * self.reg_str
         else:
             entropy = -tf.reduce_sum(policy_out * tf.log(policy_out), axis=1,
-                                 keepdims=True)
+                                     keepdims=True)
             log_prob = tf.reduce_sum(tf.log(policy_out) * tf.one_hot(a, self.action_space_length[0], dtype=tf.float32),
-                                 axis=1, keepdims=True)
+                                     axis=1, keepdims=True)
             loss = log_prob * td_error
             return tf.reduce_mean(-loss) + tf.reduce_mean(-entropy) * self.reg_str
 
