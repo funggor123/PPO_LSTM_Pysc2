@@ -47,20 +47,25 @@ class A2C:
                                                                               batch_size=minibatch
                                                                               )
             else:
-                self.value_out, self.policy_out, self.params, self.i_state, self.f_state = model.make_network(input_opr=self.batch['state'],
-                                                                                  name="target",
-                                                                                  batch_size=minibatch,
-                                                                                  train=True)
+                self.value_out, self.policy_out, self.params, self.i_state, self.f_state = model.make_network(
+                    input_opr=self.batch['state'],
+                    name="target",
+                    batch_size=minibatch,
+                    train=True)
         else:
-            self.value_out, self.policy_out, self.params, self.i_state, self.f_state = model.make_network(input_opr=self.s,
-                                                                              name="target",
-                                                                              batch_size=minibatch,
-                                                                              train=True)
+            self.value_out, self.policy_out, self.params, self.i_state, self.f_state = model.make_network(
+                input_opr=self.s,
+                name="target",
+                batch_size=minibatch,
+                train=True)
         if self.is_seperate:
             self.policy_eval, _ = model.make_actor_network(self.s, 'target', batch_size=1, reuse=True)
             self.value_eval, _ = model.make_critic_network(self.s, 'target_value', batch_size=1, reuse=True)
         else:
-            self.value_eval, self.policy_eval, _, self.eval_i_state, self.eval_f_state = model.make_network(self.s, 'target', reuse=True, batch_size=1)
+            self.value_eval, self.policy_eval, _, self.eval_i_state, self.eval_f_state = model.make_network(self.s,
+                                                                                                            'target',
+                                                                                                            reuse=True,
+                                                                                                            batch_size=1)
 
         self.value_loss = self.get_value_loss(self.value_out, self.v)
 

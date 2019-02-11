@@ -5,7 +5,7 @@ import tensorflow as tf
 class PPO(A2C):
 
     def __init__(self, obs_dimension, a_dimension, lr, action_space_length, feature_transform,
-                 epsilon, model, regular_str, minibatch, epoch, is_seperate=False):
+                 epsilon, model, regular_str, minibatch, epoch, is_seperate=False, isPysc2=False):
         super(PPO, self).__init__(obs_dimension, a_dimension, action_space_length, lr,
                                   feature_transform, model, regular_str, minibatch, epoch, isa2c=False, is_seperate=is_seperate)
 
@@ -24,6 +24,7 @@ class PPO(A2C):
                                                                                       name="old",
                                                                                       batch_size=minibatch,
                                                                                       train=False)
+
 
         if self.is_seperate:
             self.sync_network = self.get_sync_old(self.params, self.old_params)

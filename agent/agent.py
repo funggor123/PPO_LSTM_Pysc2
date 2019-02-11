@@ -32,6 +32,7 @@ def train_episode(sess, actor, environment, train):
         '''
         episode.add_experience(exp)
         episode.add_reward(reward)
+
         if done or train.stop_to_learn(current_step=step):
 
             if observation is None:

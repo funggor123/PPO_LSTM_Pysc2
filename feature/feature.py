@@ -31,5 +31,5 @@ class FeatureTransform:
             r[t] = exp.reward
             a[t] = exp.action
 
-        v[max_step] = episode.terminal_state_value
+        v[max_step] = 0
         return s, s_, a, r, v, max_step
