@@ -9,7 +9,7 @@ class Py_PPO(Py_A2C):
                  training=True):
         super(Py_PPO, self).__init__(msize, ssize, lr, feature_transform, model, regular_str, minibatch, epoch, isa2c,
                                      training)
-        self.epsilon = epsilon
+        self.epsilonx = epsilonx
 
         self.value_old_out, self.old_policy_out, self.old_params, _, _ = model.make_network(
             input_opr=self.input_opr_batch,
@@ -34,8 +34,8 @@ class Py_PPO(Py_A2C):
 
         surr = ratio * self.batch["advantage"]
         ratio_clip_opr = tf.clip_by_value(ratio,
-                                          1 - self.epsilon,
-                                          1 + self.epsilon)
+                                          1 - self.epsilonx,
+                                          1 + self.epsilonx)
 
         exp = tf.minimum(surr, ratio_clip_opr * self.batch["advantage"])
 
