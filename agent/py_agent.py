@@ -42,6 +42,7 @@ def main(unused_argv):
             regular_str=1e-2,
             minibatch=32,
             epsilon=0.1,
+            isa2c=False,
             epoch=10)
         agent = ZergAgent(actor, sess)
         sess.run(actor.get_init_opr())

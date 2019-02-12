@@ -23,7 +23,7 @@ class Py_PPO(Py_A2C):
         self.sync_network = self.get_sync_old(self.params, self.old_params)
 
         ratio = self.get_log(self.spatial_action_out, self.batch['spatial_action_selected'],
-                             self.batch['self.non_spatial_action_selected']
+                             self.batch['non_spatial_action_selected']
                              , self.batch['valid_non_spatial_action'],
                              self.non_spatial_action_out,
                              self.batch['valid_spatial_action']
