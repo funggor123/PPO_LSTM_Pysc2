@@ -79,8 +79,6 @@ class Py_PPO(Py_A2C):
                      self.learning_rate: lr
                      }
 
-        self.sync_old(sess, feed_dict)
-
         while True:
             try:
                 _, loss, global_step = self.update(sess, self.min_total_loss, self.total_loss,
