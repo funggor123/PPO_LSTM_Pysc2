@@ -6,7 +6,7 @@ import common.utils as U
 
 class Py_A2C:
 
-    def __init__(self, msize, ssize, lr, feature_transform, model, regular_str, minibatch, epoch, isa2c=True, training=True):
+    def __init__(self, msize, ssize, lr, feature_transform, model, regular_str, minibatch, epoch, isa2c=False, training=True):
 
         self.lr = lr
         self.model = model
@@ -68,9 +68,6 @@ class Py_A2C:
                 num_action=self.isize,
                 reuse=False)
 
-            self.spatial_action_out = self.policy_out["spatial_action"]
-            self.non_spatial_action_out = self.policy_out["non_spatial_action"]
-
         else:
             self.value_out, self.policy_out, self.params, _, _ = model.make_network(
                 input_opr=self.input_opr,
@@ -78,8 +75,8 @@ class Py_A2C:
                 num_action=self.isize,
                 reuse=False)
 
-            self.spatial_action_out = self.policy_out["spatial_action"]
-            self.non_spatial_action_out = self.policy_out["non_spatial_action"]
+        self.spatial_action_out = self.policy_out["spatial_action"]
+        self.non_spatial_action_out = self.policy_out["non_spatial_action"]
 
         self.value_eval, self.policy_eval, _, _, _ = model.make_network(self.input_opr,
                                                                         'target',
@@ -215,7 +212,7 @@ class Py_A2C:
                 self.info: info }
 
         non_spatial_action, spatial_action, value = sess.run(
-            [self.non_spatial_action_eval, self.spatial_action_eval, self.value_out],
+            [self.non_spatial_action_eval, self.spatial_action_eval, self.value_eval],
             feed_dict=feed)
 
         # Select an action and a spatial target
