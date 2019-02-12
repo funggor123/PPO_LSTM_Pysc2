@@ -9,6 +9,7 @@ from algorithum.py_a2c import Py_A2C
 import tensorflow as tf
 from common.episode import Episode
 import random
+from algorithum.py_ppo import Py_PPO
 
 
 class ZergAgent(base_agent.BaseAgent):
@@ -32,7 +33,7 @@ def main(unused_argv):
     with tf.Session() as sess:
         gae = PY_GAE(ssize=64, msize=64, gamma=0.99, beta=1)
         convnet = ConvNet()
-        actor = Py_A2C(
+        actor = Py_PPO(
             lr=0.0001,
             msize=64,
             ssize=64,
@@ -40,6 +41,7 @@ def main(unused_argv):
             model=convnet,
             regular_str=1e-2,
             minibatch=32,
+            epsilon=0.1,
             epoch=10)
         agent = ZergAgent(actor, sess)
         sess.run(actor.get_init_opr())
