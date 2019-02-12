@@ -104,8 +104,6 @@ class Py_A2C:
 
         self.min_total_loss = self.get_min(self.total_loss, self.optimizer,
                                            self.global_step)
-        self.init = tf.global_variables_initializer()
-        self.saver = tf.train.Saver()
 
 
     def get_loss(self, log_prob, td_error):
@@ -124,12 +122,6 @@ class Py_A2C:
 
     def get_global_step(self):
         return self.global_step
-
-    def get_init_opr(self):
-        return self.init
-
-    def get_saver_opr(self):
-        return self.saver
 
     def get_min(self, loss, opt_opr, global_step):
         return opt_opr.minimize(loss, global_step=global_step)

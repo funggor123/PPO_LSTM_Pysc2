@@ -59,13 +59,18 @@ class Py_PPO(Py_A2C):
     def get_sync_old(self, params, old_params):
         return [old_params.assign(params) for params, old_params in zip(params, old_params)]
 
+    def get_init_opr(self):
+        return self.init
+
+    def get_saver_opr(self):
+        return self.saver
+
     def sync_old(self, sess, feed_dict):
         sess.run([self.sync_network, self.iterator.initializer], feed_dict=feed_dict)
 
     def learn(self, sess, rbs, lr):
         r, v, g_adv, adv, q, minimaps, screens, infos, spatial_action_selecteds, valid_spatial_actions, non_spatial_action_selecteds, valid_non_spatial_actions, \
         max_step = self.feature_t.transform(rbs, sess, self)
-        self.sync_old(sess)
 
         feed_dict = {self.minimap: minimaps,
                      self.screen: screens,
@@ -78,6 +83,7 @@ class Py_PPO(Py_A2C):
                      self.v: q,
                      self.learning_rate: lr
                      }
+        self.sync_old(sess, feed_dict)
 
         while True:
             try:
