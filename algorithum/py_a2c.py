@@ -89,7 +89,11 @@ class Py_A2C:
             self.non_spatial_action_eval = self.policy_eval["non_spatial_action"]
 
         self.value_loss = self.get_value_loss(self.value_out, self.v)
-        self.policy_loss = self.get_loss(self.get_log_prob(), self.td_error)
+        self.policy_loss = self.get_loss(self.get_log(self.spatial_action_out, self.spatial_action_selected, self.non_spatial_action_selected
+                                                           , self.valid_non_spatial_action,
+                                                           self.non_spatial_action_out,
+                                                           self.valid_spatial_action
+                                                           ), self.td_error)
 
         self.policy = [self.spatial_action_out, self.non_spatial_action_out]
 
@@ -107,16 +111,16 @@ class Py_A2C:
     def get_loss(self, log_prob, td_error):
         return tf.reduce_mean(-(log_prob * td_error))
 
-    def get_log_prob(self):
-        spatial_action_prob = tf.reduce_sum(self.spatial_action_out * self.spatial_action_selected, axis=1)
+    def get_log(self, spatial_action_out, spatial_action_selected, non_spatial_action_selected,valid_non_spatial_action, non_spatial_action_out, valid_spatial_action):
+        spatial_action_prob = tf.reduce_sum(spatial_action_out * spatial_action_selected, axis=1)
         spatial_action_log_prob = tf.log(tf.clip_by_value(spatial_action_prob, 1e-10, 1.))
-        non_spatial_action_prob = tf.reduce_sum(self.non_spatial_action_out * self.non_spatial_action_selected, axis=1)
-        valid_non_spatial_action_prob = tf.reduce_sum(self.non_spatial_action_out * self.valid_non_spatial_action,
+        non_spatial_action_prob = tf.reduce_sum(non_spatial_action_out * non_spatial_action_selected, axis=1)
+        valid_non_spatial_action_prob = tf.reduce_sum(non_spatial_action_out * valid_non_spatial_action,
                                                       axis=1)
         valid_non_spatial_action_prob = tf.clip_by_value(valid_non_spatial_action_prob, 1e-10, 1.)
         non_spatial_action_prob = non_spatial_action_prob / valid_non_spatial_action_prob
         non_spatial_action_log_prob = tf.log(tf.clip_by_value(non_spatial_action_prob, 1e-10, 1.))
-        return self.valid_spatial_action * spatial_action_log_prob + non_spatial_action_log_prob
+        return valid_spatial_action * spatial_action_log_prob + non_spatial_action_log_prob
 
     def get_global_step(self):
         return self.global_step
