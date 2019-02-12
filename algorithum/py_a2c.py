@@ -81,12 +81,12 @@ class Py_A2C:
             self.spatial_action_out = self.policy_out["spatial_action"]
             self.non_spatial_action_out = self.policy_out["non_spatial_action"]
 
-            self.value_eval, self.policy_eval, _, _, _ = model.make_network(self.input_opr,
-                                                                            'target',
-                                                                            num_action=self.isize,
-                                                                            reuse=True)
-            self.spatial_action_eval = self.policy_eval["spatial_action"]
-            self.non_spatial_action_eval = self.policy_eval["non_spatial_action"]
+        self.value_eval, self.policy_eval, _, _, _ = model.make_network(self.input_opr,
+                                                                        'target',
+                                                                        num_action=self.isize,
+                                                                        reuse=True)
+        self.spatial_action_eval = self.policy_eval["spatial_action"]
+        self.non_spatial_action_eval = self.policy_eval["non_spatial_action"]
 
         self.value_loss = self.get_value_loss(self.value_out, self.v)
         self.policy_loss = self.get_loss(self.get_log(self.spatial_action_out, self.spatial_action_selected, self.non_spatial_action_selected
