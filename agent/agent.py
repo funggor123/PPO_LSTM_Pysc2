@@ -27,9 +27,6 @@ def train_episode(sess, actor, environment, train):
 
         exp = Experience()
         exp.set_all(reward=reward, action=action, last_state_obs=last_state_observation, current_state_obs=observation, last_state_value=value)
-        '''
-        (reward + 8) / 8)
-        '''
         episode.add_experience(exp)
         episode.add_reward(reward)
 
@@ -51,4 +48,4 @@ def train_episode(sess, actor, environment, train):
 
 
 def init():
-    return ps.get_racingPPO_LSTM()
+    return ps.get_pendulumPPO()

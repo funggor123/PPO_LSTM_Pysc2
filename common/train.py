@@ -17,11 +17,16 @@ class Train:
         self.init_opr = None
         self.sess = None
         self.save_every_episode = save_every_episode
+        self.reward_list = []
 
     def add_episode(self, episode):
         self.num_episode = self.num_episode + 1
         self.reward = self.reward + episode.reward
         self.loss = episode.loss
+        if len(self.reward_list) == 0:
+            self.reward_list.append(self.reward)
+        else:
+            self.reward_list.append(self.reward_list[-1] * 0.9 + episode.reward * 0.1)
         self.print_detail_in_every_episode(episode.reward)
         self.save_in_every_episode(self.save_every_episode, self.sess, self.saver_opr)
 
@@ -39,6 +44,8 @@ class Train:
             print("----------------------------")
             self.print_num_episode()
             self.print_average_reward()
+            print("Ep Reward: ", reward)
+            print("Moving Average Reward: ", self.reward_list[-1])
             self.print_loss()
             print("Episode Reward ", reward)
             print("----------------------------")
