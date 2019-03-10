@@ -60,10 +60,9 @@ class PPO(A2C):
         self.value_loss_opr = tf.reduce_mean(tf.maximum(loss_vf1, loss_vf2)) * 0.5
         self.total_loss = self.value_loss_opr + self.policy_loss_opr
 
-        self.min_policy_loss_opr = self.get_min(self.policy_loss_opr, self.optimizer, self.global_step)
-        self.min_value_loss_opr = self.get_min_without_clip(self.value_loss_opr, self.optimizer)
-        self.min_total_loss_opr = self.get_min(self.total_loss, self.optimizer,
-                                               self.global_step)
+        self.min_policy_loss_opr = self.get_min_clip(self.policy_loss_opr, self.optimizer)
+        self.min_value_loss_opr = self.get_min_clip(self.value_loss_opr, self.optimizer)
+        self.min_total_loss_opr = self.get_min_clip(self.total_loss, self.optimizer)
 
         self.init = tf.global_variables_initializer()
         self.saver = tf.train.Saver()
