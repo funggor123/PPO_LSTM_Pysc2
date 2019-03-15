@@ -1,4 +1,5 @@
 from common.episode import Episode
+import tensorflow as tf
 
 
 class Train:
@@ -18,6 +19,9 @@ class Train:
         self.sess = None
         self.save_every_episode = save_every_episode
         self.reward_list = []
+        self.moving_average = None
+        self.summaries = None
+        self.writer = None
 
     def add_episode(self, episode):
         self.num_episode = self.num_episode + 1
@@ -27,6 +31,8 @@ class Train:
             self.reward_list.append(self.reward)
         else:
             self.reward_list.append(self.reward_list[-1] * 0.9 + episode.reward * 0.1)
+        summ = self.sess.run(self.summaries, feed_dict={ self.moving_average: self.reward_list[-1]})
+        self.writer.add_summary(summ, global_step=self.num_episode)
         self.print_detail_in_every_episode(episode.reward)
         self.save_in_every_episode(self.save_every_episode, self.sess, self.saver_opr)
 
@@ -47,7 +53,6 @@ class Train:
             print("Ep Reward: ", reward)
             print("Moving Average Reward: ", self.reward_list[-1])
             self.print_loss()
-            print("Episode Reward ", reward)
             print("----------------------------")
 
     def stop(self):
@@ -62,6 +67,11 @@ class Train:
         return False
 
     def start(self, saver_opr, init_opr, sess):
+        self.moving_average = tf.Variable(1, name="w_1")
+        tf.summary.scalar("normal/moving_mean", self.moving_average)
+        self.writer = tf.summary.FileWriter("TensorBoard/", graph=sess.graph)
+        self.summaries = tf.summary.merge_all()
+
         if self.train is False:
             self.saver_opr = saver_opr
             self.saver_opr.restore(sess, "/tmp/model.ckpt")

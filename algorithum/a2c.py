@@ -86,24 +86,14 @@ class A2C:
 
         self.min_policy_loss = self.get_min_clip(self.policy_loss, self.optimizer)
         self.min_value_loss = self.get_min_clip(self.value_loss, self.optimizer)
-        self.min_total_loss = self.get_min_clip(self.total_loss, self.optimizer,)
+        self.min_total_loss = self.get_min_clip(self.total_loss, self.optimizer)
 
         self.init = tf.global_variables_initializer()
         self.saver = tf.train.Saver()
 
-        '''
-        self.summary_opr = tf.summary.merge_all()
-        self.writer = tf.summary.FileWriter("TensorBoard/", graph=graph)
-        self.graph = graph
-        '''
 
     def get_global_step(self):
         return self.global_step
-
-    ''''
-    def get_summary_opr(self):
-        return self.summary_opr
-    '''
 
     def get_init_opr(self):
         return self.init

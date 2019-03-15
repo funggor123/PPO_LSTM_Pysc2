@@ -5,7 +5,7 @@ import tensorflow as tf
 class PPO(A2C):
 
     def __init__(self, obs_dimension, a_dimension, lr, action_space_length, feature_transform,
-                 epsilon, model, regular_str, minibatch, epoch, is_seperate=False, isPysc2=False):
+                 epsilon, model, regular_str, minibatch, epoch, vf_coef, is_seperate=False, isPysc2=False):
         super(PPO, self).__init__(obs_dimension, a_dimension, action_space_length, lr,
                                   feature_transform, model, regular_str, minibatch, epoch, isa2c=False, is_seperate=is_seperate)
 
@@ -57,7 +57,7 @@ class PPO(A2C):
         clipped_value = self.value_old_out + tf.clip_by_value(self.value_out - self.value_old_out, -epsilon, epsilon)
         loss_vf1 = tf.squared_difference(clipped_value, self.batch["rewards"])
         loss_vf2 = tf.squared_difference(self.value_out, self.batch["rewards"])
-        self.value_loss_opr = tf.reduce_mean(tf.maximum(loss_vf1, loss_vf2)) * 0.5
+        self.value_loss_opr = tf.reduce_mean(tf.maximum(loss_vf1, loss_vf2)) * vf_coef
         self.total_loss = self.value_loss_opr + self.policy_loss_opr
 
         self.min_policy_loss_opr = self.get_min_clip(self.policy_loss_opr, self.optimizer)

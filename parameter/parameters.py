@@ -23,6 +23,7 @@ def get_car_pole():
                 action_space_length=env.discrete_action_bound,
                 regular_str=0.01,
                 minibatch=16,
+                vf_coef=0.5,
                 epoch=3,
                 is_seperate=False
                 )
@@ -44,6 +45,7 @@ def get_pendulumPPO():
                 action_space_length=env.discrete_action_bound,
                 regular_str=1e-2,
                 epsilon=0.1,
+                vf_coef=0.5,
                 minibatch=32,
                 epoch=10
                 )
@@ -86,6 +88,7 @@ def get_racingPPO_CNN():
                 action_space_length=env.discrete_action_bound,
                 regular_str=1e-2,
                 minibatch=32,
+                vf_coef=0.5,
                 epoch=10
                 )
     train = Train(train=True, max_episode=5e5, max_step=200, batch_size=32, print_every_episode=1)

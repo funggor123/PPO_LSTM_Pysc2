@@ -2,8 +2,247 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9903dc60-0647-4fe3-b646-f218d1c8634e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1547998702.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1547998838.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1547998897.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1547999274.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1547999409.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1547999496.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1547999546.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1547999674.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1547999732.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1547999750.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1547999894.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1547999923.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1547999970.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548000079.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548000286.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548000398.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548000466.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548000507.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548000525.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548001400.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548006438.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548006470.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548007410.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548007423.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548007458.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548007628.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548007767.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548007807.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548007852.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548007986.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548008188.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548008204.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548008225.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548008315.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548008351.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548008398.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548009019.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548009033.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548009139.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548009157.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548009201.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548009242.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548009299.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548009329.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548009363.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548009397.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548009539.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548009685.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548009756.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548009839.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548009868.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548009894.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548009950.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548010139.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548010190.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548010232.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548010267.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548010314.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548010367.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548010384.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548010502.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548010553.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548010609.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548010765.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548010790.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548010833.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548010927.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548011006.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548011033.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548011082.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548011116.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548011127.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548011138.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548011154.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548050298.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548054687.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548054698.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548054708.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548054717.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548054726.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548054737.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548054875.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548054940.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548055017.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548055458.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548055516.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548058533.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548058762.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548058815.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548059113.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548081252.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548081672.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548081695.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548081743.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548081900.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548085324.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548085360.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548085441.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548085938.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548086009.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548086135.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548086180.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548086226.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548086322.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548086334.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548086360.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548086388.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548086402.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548086409.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548086418.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548086430.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548086448.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548086474.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548086589.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548086706.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548086719.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548086757.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548086784.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548086797.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548086849.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548086868.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548086968.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548087029.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548087093.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548087171.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548087226.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548087305.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548087392.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548430924.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548431065.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548431897.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548431915.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548432026.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548432191.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548432312.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548432350.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548432487.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548432620.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548432698.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548432779.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548432905.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548432948.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548433129.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548433149.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548433184.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548433203.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548433325.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548433389.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548433424.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548681832.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548681847.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548681879.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548682461.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548913064.Chengde-MacBook-Pro.local" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548957897.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548957987.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1548958074.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/nontrain/events.out.tfevents.1547916014.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/nontrain/events.out.tfevents.1547918387.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/nontrain/events.out.tfevents.1547918484.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/nontrain/events.out.tfevents.1547918629.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/nontrain/events.out.tfevents.1547919246.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/nontrain/events.out.tfevents.1547919289.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/nontrain/events.out.tfevents.1547919392.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/tensorboard" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547361753.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547361873.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547361930.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547361966.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547362684.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547362750.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547362795.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547362831.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547362873.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547362891.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547362943.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547363243.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547363256.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547363269.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547363285.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547363308.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547363337.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547363359.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547363373.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547363406.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547363416.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547363479.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547363504.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547363520.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547363540.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547363588.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547363596.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547363662.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547363676.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547363689.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547363702.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547363733.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547363870.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547363890.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547363989.DESKTOP-NRR7C9S" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547914556.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547915316.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547915376.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547915589.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547916635.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547918026.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547918645.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547918695.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547918989.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547919134.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547983501.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547984432.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547984792.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547985700.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547989789.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547989819.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547989857.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547989922.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547989948.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547989969.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547990037.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547990076.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547990137.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547990247.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547990279.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547990319.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547990365.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547990451.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547990498.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547990519.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547990609.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547990640.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547991076.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547991214.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547991296.fung" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TensorBoard/train/events.out.tfevents.1547997481.fung" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithum/a2c.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithum/a2c.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithum/ppo.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithum/ppo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parameter/parameters.py" beforeDir="false" afterPath="$PROJECT_DIR$/parameter/parameters.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,7 +251,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/A2C$main.coverage" NAME="main Coverage Results" MODIFIED="1552669637963" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/A2C$main.coverage" NAME="main Coverage Results" MODIFIED="1552674643249" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/A2C$simple_control.coverage" NAME="main Coverage Results" MODIFIED="1548011151301" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/A2C$py_agent.coverage" NAME="main Coverage Results" MODIFIED="1552210568856" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/A2C$network.coverage" NAME="simple_control Coverage Results" MODIFIED="1546886322146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -33,12 +272,12 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/algorithum/a2c.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="86" column="49" selection-start-line="86" selection-start-column="31" selection-end-line="86" selection-end-column="49" />
+            <state relative-caret-position="253">
+              <caret line="88" column="79" selection-start-line="88" selection-start-column="79" selection-end-line="88" selection-end-column="79" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -47,12 +286,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/agent/py_agent.py">
+        <entry file="file://$PROJECT_DIR$/algorithum/py_ppo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="44" column="24" selection-start-line="44" selection-start-column="24" selection-end-line="44" selection-end-column="24" />
+            <state relative-caret-position="-182">
+              <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
               <folding>
-                <element signature="e#0#35#0" expanded="true" />
+                <element signature="e#0#30#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -61,8 +300,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/parameter/parameters.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1080">
-              <caret line="79" column="70" selection-start-line="79" selection-start-column="70" selection-end-line="79" selection-end-column="70" />
+            <state relative-caret-position="375">
+              <caret line="46" column="28" lean-forward="true" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
               </folding>
@@ -73,7 +312,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/algorithum/py_a2c.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3090">
+            <state relative-caret-position="2102">
               <caret line="209" column="38" selection-start-line="209" selection-start-column="38" selection-end-line="209" selection-end-column="38" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
@@ -85,8 +324,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/agent/agent.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="28" column="143" selection-start-line="28" selection-start-column="143" selection-end-line="28" selection-end-column="143" />
+            <state relative-caret-position="357">
+              <caret line="40" selection-start-line="40" selection-end-line="40" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
               </folding>
@@ -95,34 +334,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="6" column="60" selection-start-line="6" selection-start-column="60" selection-end-line="6" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/feature/feature.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+            <state relative-caret-position="-58">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/feature/gae.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="28" selection-start-line="28" selection-end-line="28" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/episode.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -130,8 +357,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/algorithum/ppo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="62" column="89" selection-start-line="62" selection-start-column="89" selection-end-line="62" selection-end-column="89" />
+            <state relative-caret-position="90">
+              <caret line="7" column="71" selection-start-line="7" selection-start-column="71" selection-end-line="7" selection-end-column="71" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/feed_forward.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="34" column="40" selection-start-line="34" selection-start-column="40" selection-end-line="34" selection-end-column="40" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -139,8 +378,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/common/train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="705">
-              <caret line="47" column="66" selection-start-line="47" selection-start-column="66" selection-end-line="47" selection-end-column="66" />
+            <state relative-caret-position="236">
+              <caret line="70" column="54" lean-forward="true" selection-start-line="70" selection-start-column="54" selection-end-line="70" selection-end-column="54" />
+              <folding>
+                <element signature="e#0#34#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -222,12 +464,10 @@
         <option value="$PROJECT_DIR$/train.py" />
         <option value="$PROJECT_DIR$/run.sh" />
         <option value="$PROJECT_DIR$/common/experience.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/common/environment.py" />
         <option value="$PROJECT_DIR$/model/lstm.py" />
         <option value="$PROJECT_DIR$/algorithum/a3c.py" />
         <option value="$PROJECT_DIR$/algorithum/dppo.py" />
-        <option value="$PROJECT_DIR$/parameter/parameters.py" />
         <option value="$PROJECT_DIR$/model/awd.py" />
         <option value="$PROJECT_DIR$/model/ad.py" />
         <option value="$PROJECT_DIR$/model/feed_forward.py" />
@@ -242,11 +482,13 @@
         <option value="$PROJECT_DIR$/algorithum/py_ppo.py" />
         <option value="$PROJECT_DIR$/algorithum/py_a2c.py" />
         <option value="$PROJECT_DIR$/common/episode.py" />
-        <option value="$PROJECT_DIR$/common/train.py" />
         <option value="$PROJECT_DIR$/feature/gae.py" />
         <option value="$PROJECT_DIR$/feature/feature.py" />
         <option value="$PROJECT_DIR$/agent/agent.py" />
+        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/algorithum/a2c.py" />
+        <option value="$PROJECT_DIR$/common/train.py" />
+        <option value="$PROJECT_DIR$/parameter/parameters.py" />
         <option value="$PROJECT_DIR$/algorithum/ppo.py" />
       </list>
     </option>
@@ -263,7 +505,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -301,10 +542,16 @@
               <item name="A2C" type="462c0819:PsiDirectoryNode" />
               <item name="parameter" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="A2C" type="b2602c69:ProjectViewProjectNode" />
+              <item name="A2C" type="462c0819:PsiDirectoryNode" />
+              <item name="TensorBoard" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -398,11 +645,12 @@
       <workItem from="1549736391602" duration="19407000" />
       <workItem from="1549804727465" duration="51757000" />
       <workItem from="1552201878980" duration="7111000" />
+      <workItem from="1552669633229" duration="5943000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="388091000" />
+    <option name="totallyTimeSpent" value="394034000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -414,14 +662,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="1440" height="876" extended-state="0" />
+    <frame x="65" y="-4" width="1535" height="904" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13199426" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2592344" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3271028" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.39118826" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.33976835" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3978638" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -430,7 +679,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32977304" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.26034713" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.55727154" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32867134" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -535,13 +784,6 @@
     </entry>
     <entry file="file://$USER_HOME$/.local/lib/python3.5/site-packages/pysc2/lib/features.py" />
     <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/client/session.py" />
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="5" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/common/experience.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -590,37 +832,13 @@
     <entry file="file://$PROJECT_DIR$/algorithum/a3c.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/feed_forward.py">
+    <entry file="file://$PROJECT_DIR$/agent/py_agent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="33" column="79" selection-start-line="33" selection-start-column="69" selection-end-line="33" selection-end-column="79" />
+        <state relative-caret-position="495">
+          <caret line="44" column="24" selection-start-line="44" selection-start-column="24" selection-end-line="44" selection-end-column="24" />
           <folding>
-            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#0#35#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/algorithum/py_ppo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="47" column="66" selection-start-line="47" selection-start-column="66" selection-end-line="47" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/episode.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -634,19 +852,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/agent/agent.py">
+    <entry file="file://$PROJECT_DIR$/common/episode.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="28" column="143" selection-start-line="28" selection-start-column="143" selection-end-line="28" selection-end-column="143" />
+        <state relative-caret-position="135">
+          <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feature/feature.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-58">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
           <folding>
-            <element signature="e#0#42#0" expanded="true" />
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/feed_forward.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="34" column="40" selection-start-line="34" selection-start-column="40" selection-end-line="34" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/algorithum/py_a2c.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3090">
+        <state relative-caret-position="2102">
           <caret line="209" column="38" selection-start-line="209" selection-start-column="38" selection-end-line="209" selection-end-column="38" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
@@ -654,50 +889,67 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parameter/parameters.py">
+    <entry file="file://$PROJECT_DIR$/algorithum/py_ppo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="79" column="70" selection-start-line="79" selection-start-column="70" selection-end-line="79" selection-end-column="70" />
+        <state relative-caret-position="-182">
+          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/agent/agent.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/agent/py_agent.py">
+    <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="44" column="24" selection-start-line="44" selection-start-column="24" selection-end-line="44" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feature/feature.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="75">
+          <caret line="6" column="60" selection-start-line="6" selection-start-column="60" selection-end-line="6" selection-end-column="60" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/algorithum/a2c.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="86" column="49" selection-start-line="86" selection-start-column="31" selection-end-line="86" selection-end-column="49" />
+        <state relative-caret-position="253">
+          <caret line="88" column="79" selection-start-line="88" selection-start-column="79" selection-end-line="88" selection-end-column="79" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/common/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="70" column="54" lean-forward="true" selection-start-line="70" selection-start-column="54" selection-end-line="70" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parameter/parameters.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="46" column="28" lean-forward="true" selection-start-line="46" selection-start-column="28" selection-end-line="46" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/algorithum/ppo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="62" column="89" selection-start-line="62" selection-start-column="89" selection-end-line="62" selection-end-column="89" />
+        <state relative-caret-position="90">
+          <caret line="7" column="71" selection-start-line="7" selection-start-column="71" selection-end-line="7" selection-end-column="71" />
         </state>
       </provider>
     </entry>
