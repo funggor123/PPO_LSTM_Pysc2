@@ -25,6 +25,7 @@ def get_car_pole():
                 minibatch=16,
                 vf_coef=0.5,
                 epoch=3,
+                max_grad_norm=0.5,
                 is_seperate=False
                 )
     train = Train(train=True, max_episode=5e5, max_step=10000, batch_size=128)
@@ -45,7 +46,8 @@ def get_pendulumPPO():
                 action_space_length=env.discrete_action_bound,
                 regular_str=1e-2,
                 epsilon=0.1,
-                vf_coef=0.5,
+                vf_coef=1,
+                max_grad_norm=0.5,
                 minibatch=32,
                 epoch=10
                 )
@@ -67,7 +69,8 @@ def get_pendulumA2C():
                 action_space_length=env.discrete_action_bound,
                 regular_str=1e-2,
                 minibatch=32,
-                epoch=10
+                epoch=10,
+                max_grad_norm=0.5,
                 )
     train = Train(train=True, max_episode=5e5, max_step=10000, batch_size=8192)
     return actor, env, train
@@ -89,7 +92,8 @@ def get_racingPPO_CNN():
                 regular_str=1e-2,
                 minibatch=32,
                 vf_coef=0.5,
-                epoch=10
+                epoch=10,
+                max_grad_norm=0.5,
                 )
     train = Train(train=True, max_episode=5e5, max_step=200, batch_size=32, print_every_episode=1)
     return actor, env, train
@@ -110,7 +114,9 @@ def get_racingPPO_LSTM():
                 action_space_length=env.discrete_action_bound,
                 regular_str=1e-2,
                 minibatch=32,
-                epoch=10
+                epoch=10,
+                max_grad_norm=0.5,
+                vf_coef=1
                 )
     train = Train(train=True, max_episode=5e5, max_step=200, batch_size=32, print_every_episode=1)
     return actor, env, train

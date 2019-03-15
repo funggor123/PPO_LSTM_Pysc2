@@ -32,6 +32,7 @@ class Model:
         return value_out
 
     def make_network(self, input_opr, name, train=True, reuse=False, batch_size=0):
+
         with tf.variable_scope(name, reuse=reuse):
             fc1 = layers.dense(input_opr, units=self.num_unit, activation=tf.nn.relu6,
                                trainable=train)
@@ -47,6 +48,7 @@ class Model:
         return value_out, policy_out, params, None, None
 
     def make_actor_network(self, input_opr, name, train=True, reuse=False):
+
         with tf.variable_scope(name, reuse=reuse):
             fc1 = layers.dense(input_opr, units=200, activation=tf.nn.relu6,
                                trainable=train)

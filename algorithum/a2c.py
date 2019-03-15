@@ -5,7 +5,7 @@ import numpy as np
 class A2C:
 
     def __init__(self, obs_dimension, a_dimension, action_space_length, lr, feature_transform,
-                 model, regular_str, minibatch, epoch, isa2c=True, is_seperate=False):
+                 model, regular_str, minibatch, epoch, max_grad_norm, isa2c=True, is_seperate=False):
 
         self.obs_dim = obs_dimension
         self.a_dim = a_dimension
@@ -15,6 +15,7 @@ class A2C:
         self.action_space_length = action_space_length
         self.feature_t = feature_transform
         self.is_seperate = is_seperate
+        self.max_grad_norm = max_grad_norm
 
         self.s = tf.placeholder(tf.float32, shape=(None,) + obs_dimension, name="state")
         self.v = tf.placeholder(tf.float32, shape=(None, 1), name="value")
@@ -109,12 +110,12 @@ class A2C:
 
     def get_min_clip_global_step(self, loss, opt_opr, global_step):
         gradients, variables = zip(*opt_opr.compute_gradients(loss))
-        gradients, _ = tf.clip_by_global_norm(gradients, 0.5)
+        gradients, _ = tf.clip_by_global_norm(gradients, self.max_grad_norm)
         return opt_opr.apply_gradients(zip(gradients, variables), global_step)
 
     def get_min_clip(self, loss, opt_opr):
         gradients, variables = zip(*opt_opr.compute_gradients(loss))
-        gradients, _ = tf.clip_by_global_norm(gradients, 0.5)
+        gradients, _ = tf.clip_by_global_norm(gradients, self.max_grad_norm)
         return opt_opr.apply_gradients(zip(gradients, variables))
 
     def get_value_loss(self, value_out, v):
