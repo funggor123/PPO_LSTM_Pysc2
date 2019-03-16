@@ -76,7 +76,7 @@ class A2C:
         else:
             self.policy_loss = self.get_discrete_policy_loss(self.policy_out, self.a, self.td_error)
             if self.model.isCat:
-                self.policy = self.policy_eval.mode()
+                self.policy = self.policy_eval.sample()
             else:
                 self.policy = self.policy_eval
 

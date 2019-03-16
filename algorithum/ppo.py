@@ -32,16 +32,12 @@ class PPO(A2C):
         else:
             self.sync_network = self.get_sync_old(self.params, self.old_params)
 
-        if self.model.is_continuous:
+        if self.model.is_continuous or self.model.isCat:
             entropy = self.policy_out.entropy()
-            ratio = self.policy_out.prob(self.batch["actions"]) / self.policy_old_out.prob(self.batch["actions"])
+            ratio = tf.exp(tf.log(self.policy_out.prob(self.batch["actions"])) - tf.log(self.policy_old_out.prob(self.batch["actions"])))
         else:
-            if self.model.isCat:
-                entropy = self.policy_out.entropy()
-                ratio = self.policy_out.prob(self.batch["actions"]) / self.policy_old_out.prob(self.batch["actions"])
-            else:
-                entropy = tf.reduce_sum(self.policy_out * tf.log(self.policy_out), axis=1, keepdims=True)
-                ratio = self.get_discrete_prob(self.policy_out, self.batch["actions"]) / self.get_discrete_prob(
+            entropy = tf.reduce_sum(self.policy_out * tf.log(self.policy_out), axis=1, keepdims=True)
+            ratio = self.get_discrete_prob(self.policy_out, self.batch["actions"]) / self.get_discrete_prob(
                     self.policy_old_out,
                     self.batch["actions"])
 
@@ -58,7 +54,7 @@ class PPO(A2C):
         loss_vf1 = tf.squared_difference(clipped_value, self.batch["rewards"])
         loss_vf2 = tf.squared_difference(self.value_out, self.batch["rewards"])
         self.value_loss_opr = tf.reduce_mean(tf.maximum(loss_vf1, loss_vf2)) * 0.5
-        self.total_loss = self.value_loss_opr + self.policy_loss_opr * vf_coef
+        self.total_loss = self.value_loss_opr * vf_coef + self.policy_loss_opr
 
         self.min_policy_loss_opr = self.get_min_clip(self.policy_loss_opr, self.optimizer)
         self.min_value_loss_opr = self.get_min_clip(self.value_loss_opr, self.optimizer)

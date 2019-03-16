@@ -48,4 +48,4 @@ def train_episode(sess, actor, environment, train):
 
 
 def init():
-    return ps.get_pendulumPPO()
+    return ps.get_car_pole()
