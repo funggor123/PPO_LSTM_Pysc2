@@ -34,7 +34,9 @@ class PPO(A2C):
 
         if self.model.is_continuous or self.model.isCat:
             entropy = self.policy_out.entropy()
-            ratio = tf.exp(tf.log(self.policy_out.prob(self.batch["actions"])) - tf.log(self.policy_old_out.prob(self.batch["actions"])))
+            c_prob = tf.maximum(self.policy_out.prob(self.batch["actions"]), 1e-20)
+            o_prob = tf.maximum(self.policy_old_out.prob(self.batch["actions"]), 1e-20)
+            ratio = tf.exp(tf.log(c_prob) - tf.log(o_prob))
         else:
             entropy = tf.reduce_sum(self.policy_out * tf.log(self.policy_out), axis=1, keepdims=True)
             ratio = self.get_discrete_prob(self.policy_out, self.batch["actions"]) / self.get_discrete_prob(

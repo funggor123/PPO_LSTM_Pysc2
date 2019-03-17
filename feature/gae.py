@@ -4,8 +4,8 @@ from feature.feature import FeatureTransform
 
 class GAE(FeatureTransform):
 
-    def __init__(self, obs_dimension, a_dimension, gamma, beta, is_continuous):
-        super(GAE, self).__init__(obs_dimension, a_dimension, is_continuous)
+    def __init__(self, obs_dimension, a_dimension, gamma, beta, is_continuous, max_reward, min_reward):
+        super(GAE, self).__init__(obs_dimension, a_dimension, is_continuous, max_reward, min_reward)
         self.gamma = gamma
         self.beta = beta
 
@@ -26,5 +26,7 @@ class GAE(FeatureTransform):
 
         for t in range(experience_size):
             q[t, 0] = g_adv[t, 0] + v[t, 0]
-
+        '''
+        g_adv = (g_adv - g_adv.mean()) / np.maximum(g_adv.std(), 1e-6)
+        '''
         return s, s_, a, r, v, g_adv, adv, q, experience_size

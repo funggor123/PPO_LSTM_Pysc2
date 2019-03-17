@@ -28,8 +28,8 @@ class Model:
         policy_out = tf.contrib.distributions.Normal(loc=mu, scale=tf.maximum(tf.exp(log_sigma), 0.0))
         return policy_out
 
-    def value_output_layer(self, fc1, train):
-        value_out = layers.dense(fc1, units=1, trainable=train)
+    def value_output_layer(self, fc1, train, w_reg):
+        value_out = layers.dense(fc1, units=1, trainable=train, kernel_regularizer=w_reg)
         return value_out
 
     def make_network(self, input_opr, name, train=True, reuse=False, batch_size=0):
@@ -39,7 +39,7 @@ class Model:
                                trainable=train, kernel_regularizer=w_reg)
             fc2 = layers.dense(fc1, units=self.num_unit, activation=tf.nn.relu6,
                                trainable=train, kernel_regularizer=w_reg)
-            value_out = self.value_output_layer(fc2, train)
+            value_out = self.value_output_layer(fc2, train, w_reg)
 
             if self.is_continuous:
                 policy_out = self.continuous_policy_output_layer(fc2, train, w_reg)

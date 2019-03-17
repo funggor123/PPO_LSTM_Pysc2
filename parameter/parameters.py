@@ -12,7 +12,7 @@ def get_car_pole():
     env = Environment(discrete_action_bound=[2], observation_space_dimension=(4,), action_space_dimension=(1,),
                       is_continuous=False, gym_string="CartPole-v0")
     feature_transform = GAE(obs_dimension=env.observation_space_dimension, a_dimension=env.action_space_dimension,
-                            gamma=0.99, beta=1, is_continuous=env.is_continuous)
+                            gamma=0.99, beta=1, is_continuous=env.is_continuous, max_reward=1, min_reward=0)
     feed_forward = Model(a_len=env.discrete_action_bound, a_dimension=env.action_space_dimension,
                          obs_dimension=env.observation_space_dimension, is_continuous=env.is_continuous,
                          a_bound=env.a_bound, is_cat=True)
@@ -24,7 +24,7 @@ def get_car_pole():
                 regular_str=1e-2,
                 minibatch=16,
                 vf_coef=1,
-                epoch=10,
+                epoch=5,
                 max_grad_norm=0.5,
                 )
     train = Train(train=True, max_episode=1e5, max_step=10000, batch_size=64)
@@ -35,7 +35,7 @@ def get_pendulumPPO():
     env = Environment(discrete_action_bound=[2], observation_space_dimension=(3,), action_space_dimension=(1,),
                       is_continuous=True, gym_string="Pendulum-v0")
     feature_transform = GAE(obs_dimension=env.observation_space_dimension, a_dimension=env.action_space_dimension,
-                            gamma=0.90, beta=1, is_continuous=env.is_continuous)
+                            gamma=0.90, beta=0.95, is_continuous=env.is_continuous, max_reward=0, min_reward=-16.2736044)
     feed_forward = Model(a_len=env.discrete_action_bound, a_dimension=env.action_space_dimension,
                          obs_dimension=env.observation_space_dimension, is_continuous=env.is_continuous,
                          a_bound=env.a_bound)
@@ -58,7 +58,7 @@ def get_pendulumA2C():
     env = Environment(discrete_action_bound=[2], observation_space_dimension=(3,), action_space_dimension=(1,),
                       is_continuous=True, gym_string="Pendulum-v0")
     feature_transform = GAE(obs_dimension=env.observation_space_dimension, a_dimension=env.action_space_dimension,
-                            gamma=0.90, beta=1, is_continuous=env.is_continuous)
+                            gamma=0.90, beta=1, is_continuous=env.is_continuous, max_reward=0, min_reward=-16.2736044)
     feed_forward = Model(a_len=env.discrete_action_bound, a_dimension=env.action_space_dimension,
                          obs_dimension=env.observation_space_dimension, is_continuous=env.is_continuous,
                          a_bound=env.a_bound)
@@ -79,7 +79,7 @@ def get_racingPPO_CNN():
     env = Environment(discrete_action_bound=[2], observation_space_dimension=(96, 96, 3), action_space_dimension=(3,),
                       is_continuous=True, gym_string="CarRacing-v0")
     feature_transform = GAE(obs_dimension=env.observation_space_dimension, a_dimension=env.action_space_dimension,
-                            gamma=0.90, beta=1, is_continuous=env.is_continuous)
+                            gamma=0.90, beta=1, is_continuous=env.is_continuous, max_reward=0, min_reward=0)
     feed_forward = ConvNet(a_len=env.discrete_action_bound, a_dimension=env.action_space_dimension,
                            obs_dimension=env.observation_space_dimension, is_continuous=env.is_continuous,
                            a_bound=env.a_bound)
@@ -102,7 +102,7 @@ def get_racingPPO_LSTM():
     env = Environment(discrete_action_bound=[2], observation_space_dimension=(96, 96, 3), action_space_dimension=(3,),
                       is_continuous=True, gym_string="CarRacing-v0")
     feature_transform = GAE(obs_dimension=env.observation_space_dimension, a_dimension=env.action_space_dimension,
-                            gamma=0.90, beta=1, is_continuous=env.is_continuous)
+                            gamma=0.90, beta=1, is_continuous=env.is_continuous, max_reward=0, min_reward=0)
     feed_forward = ConvLSTM(a_len=env.discrete_action_bound, a_dimension=env.action_space_dimension,
                             obs_dimension=env.observation_space_dimension, is_continuous=env.is_continuous,
                             a_bound=env.a_bound)
