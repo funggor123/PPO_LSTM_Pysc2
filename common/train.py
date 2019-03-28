@@ -22,6 +22,11 @@ class Train:
         self.moving_average = None
         self.summaries = None
         self.writer = None
+        self.worker = False
+
+        self.moving_average = tf.Variable(1, name="w_1")
+        tf.summary.scalar("normal/moving_mean", self.moving_average)
+        self.summaries = tf.summary.merge_all()
 
     def add_episode(self, episode):
         self.num_episode = self.num_episode + 1
@@ -66,22 +71,21 @@ class Train:
             return True
         return False
 
-    def start(self, saver_opr, init_opr, sess):
-        self.moving_average = tf.Variable(1, name="w_1")
-        tf.summary.scalar("normal/moving_mean", self.moving_average)
-        self.writer = tf.summary.FileWriter("TensorBoard/", graph=sess.graph)
-        self.summaries = tf.summary.merge_all()
-
+    def start(self, saver_opr, init_opr, sess, worker=False):
+        self.sess = sess
+        self.worker = worker
         if self.train is False:
             self.saver_opr = saver_opr
             self.saver_opr.restore(sess, "/tmp/model.ckpt")
         else:
-            self.sess = sess
             self.saver_opr = saver_opr
             self.init_opr = init_opr
-            self.sess.run(self.init_opr)
+            self.writer = tf.summary.FileWriter("TensorBoard/", graph=sess.graph)
+            if worker is False:
+                self.sess.run(self.init_opr)
 
     def save_in_every_episode(self, num_of_episode, sess, saver):
         if self.num_episode % num_of_episode == 0:
-            save_path = saver.save(sess, "/tmp/model.ckpt")
-            print("Save in : ", save_path)
+            if self.worker is False:
+                save_path = saver.save(sess, "/tmp/model.ckpt")
+                print("Save in : ", save_path)

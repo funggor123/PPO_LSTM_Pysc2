@@ -47,5 +47,5 @@ def train_episode(sess, actor, environment, train):
     return entire_episode
 
 
-def init():
-    return ps.get_pendulumPPO()
+def init(worker=None):
+    return ps.get_racingPPO_CNN(worker=worker)

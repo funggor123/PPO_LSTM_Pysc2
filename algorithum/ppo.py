@@ -5,7 +5,7 @@ import tensorflow as tf
 class PPO(A2C):
 
     def __init__(self, obs_dimension, a_dimension, lr, action_space_length, feature_transform,
-                 epsilon, model, regular_str, minibatch, epoch, vf_coef, max_grad_norm, is_seperate=False, isPysc2=False):
+                 epsilon, model, regular_str, minibatch, epoch, vf_coef, max_grad_norm, worker, is_seperate=False, isPysc2=False):
         super(PPO, self).__init__(obs_dimension, a_dimension, action_space_length, lr,
                                   feature_transform, model, regular_str, minibatch, epoch, max_grad_norm, isa2c=False, is_seperate=is_seperate)
 
@@ -34,8 +34,8 @@ class PPO(A2C):
 
         if self.model.is_continuous or self.model.isCat:
             entropy = self.policy_out.entropy()
-            c_prob = tf.maximum(self.policy_out.prob(self.batch["actions"]), 1e-20)
-            o_prob = tf.maximum(self.policy_old_out.prob(self.batch["actions"]), 1e-20)
+            c_prob = tf.maximum(self.policy_out.prob(self.batch["actions"]), 1e-8)
+            o_prob = tf.maximum(self.policy_old_out.prob(self.batch["actions"]), 1e-8)
             ratio = tf.exp(tf.log(c_prob) - tf.log(o_prob))
         else:
             entropy = tf.reduce_sum(self.policy_out * tf.log(self.policy_out), axis=1, keepdims=True)
@@ -61,6 +61,13 @@ class PPO(A2C):
         self.min_policy_loss_opr = self.get_min_clip(self.policy_loss_opr, self.optimizer)
         self.min_value_loss_opr = self.get_min_clip(self.value_loss_opr, self.optimizer)
         self.min_total_loss_opr = self.get_min_clip(self.total_loss, self.optimizer)
+
+        if worker is not None:
+            opt = tf.train.SyncReplicasOptimizer(self.optimizer, replicas_to_aggregate=worker.nog, total_num_replicas=len(worker.worker))
+            gradients, variables = zip(*opt.compute_gradients(self.total_loss))
+            gradients, _ = tf.clip_by_global_norm(gradients, self.max_grad_norm)
+            self.min_total_loss = opt.apply_gradients(zip(gradients, variables), self.global_step)
+            self.sync_replicas_hook = opt.make_session_run_hook(worker.wid == 0)
 
         self.init = tf.global_variables_initializer()
         self.saver = tf.train.Saver()
