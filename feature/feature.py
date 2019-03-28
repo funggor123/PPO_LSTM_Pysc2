@@ -1,6 +1,6 @@
 import numpy as np
 from common.experience import Experience
-
+from feature.runnning_stat import RunningStats
 
 class FeatureTransform:
 
@@ -10,6 +10,7 @@ class FeatureTransform:
         self.is_continuous = is_continuous
         self.max_reward = max_reward
         self.min_reward = min_reward
+        self.rolling_r = RunningStats()
 
     def transform(self, episode):
         experiences = episode.experiences
@@ -17,8 +18,7 @@ class FeatureTransform:
 
         s = np.zeros(shape=(max_step,) + self.obs_dimension)
         s_ = np.zeros(shape=(max_step,) + self.obs_dimension)
-        v = np.zeros(shape=(max_step + 1, 1)
-                     )
+        v = np.zeros(shape=(max_step + 1, 1))
         if self.is_continuous:
             a = np.zeros(shape=(max_step,) + self.a_dimension)
         else:
@@ -32,6 +32,12 @@ class FeatureTransform:
             v[t, 0] = exp.last_state_value
             r[t] = exp.reward
             a[t] = exp.action
-        r = (r - self.min_reward/2) / ((self.max_reward - self.min_reward)/2)
+
+        '''
+        self.rolling_r.update(r)
+        r = r / self.rolling_r.std
+        '''
+        r = (r - self.min_reward / 2) / ((self.max_reward - self.min_reward)/2)
+
         v[max_step] = episode.terminal_state_value
         return s, s_, a, r, v, max_step

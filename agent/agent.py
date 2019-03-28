@@ -1,11 +1,10 @@
-from common.environment import Environment
+
 from common.experience import Experience
 from common.episode import Episode
-from common.train import Train
-from feature.gae import GAE
-from model.feed_forward import Model
-from algorithum.ppo import PPO
 import parameter.parameters as ps
+import numpy as np
+
+see = False
 
 
 def train_episode(sess, actor, environment, train):
@@ -17,7 +16,7 @@ def train_episode(sess, actor, environment, train):
 
     for step in range(train.max_step):
 
-        if train.train is False:
+        if train.train is False or see is True:
             env.render()
 
         last_state_observation = observation
@@ -26,7 +25,8 @@ def train_episode(sess, actor, environment, train):
         observation, reward, done, info = env.step(action)
 
         exp = Experience()
-        exp.set_all(reward=reward, action=action, last_state_obs=last_state_observation, current_state_obs=observation, last_state_value=value)
+        exp.set_all(reward=reward, action=action, last_state_obs=last_state_observation, current_state_obs=observation,
+                    last_state_value=value)
         episode.add_experience(exp)
         episode.add_reward(reward)
 
@@ -48,4 +48,4 @@ def train_episode(sess, actor, environment, train):
 
 
 def init(worker=None):
-    return ps.get_racingPPO_CNN(worker=worker)
+    return ps.get_racingPPO_LSTM()

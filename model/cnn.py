@@ -6,11 +6,14 @@ from tensorflow import layers
 class ConvNet(Model):
 
     def __init__(self, a_len, a_dimension, obs_dimension, is_continuous, a_bound):
+        self.greyscale = True
         super(ConvNet, self).__init__(a_len, a_dimension, obs_dimension, is_continuous, a_bound)
 
     def make_network(self, input_opr, name, train=True, reuse=False, batch_size=0):
         w_reg = tf.contrib.layers.l2_regularizer(self.L2_REG)
         with tf.variable_scope(name, reuse=reuse):
+            if self.greyscale:
+                input_opr = tf.image.rgb_to_grayscale(input_opr)
             conv1 = tf.layers.conv2d(inputs=input_opr, filters=8, kernel_size=4, strides=2, activation=tf.nn.relu6, trainable=train)
             conv2 = tf.layers.conv2d(inputs=conv1, filters=16, kernel_size=3, strides=2, activation=tf.nn.relu6, trainable=train)
             conv3 = tf.layers.conv2d(inputs=conv2, filters=32, kernel_size=3, strides=2, activation=tf.nn.relu6,

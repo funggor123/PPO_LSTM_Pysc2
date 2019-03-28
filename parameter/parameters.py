@@ -3,7 +3,7 @@ from common.train import Train
 from feature.gae import GAE
 from model.feed_forward import Model
 from algorithum.ppo import PPO
-from model.conv_net import ConvNet
+from model.cnn import ConvNet
 from algorithum.a2c import A2C
 from model.conv_lstm import ConvLSTM
 
@@ -81,7 +81,7 @@ def get_racingPPO_CNN(worker=None):
     env = Environment(discrete_action_bound=[2], observation_space_dimension=(96, 96, 3), action_space_dimension=(3,),
                       is_continuous=True, gym_string="CarRacing-v0")
     feature_transform = GAE(obs_dimension=env.observation_space_dimension, a_dimension=env.action_space_dimension,
-                            gamma=0.99, beta=0.95, is_continuous=env.is_continuous, max_reward=7, min_reward=-0.11)
+                            gamma=0.99, beta=0.95, is_continuous=env.is_continuous, max_reward=100, min_reward=-0.10000000000000142)
     conv = ConvNet(a_len=env.discrete_action_bound, a_dimension=env.action_space_dimension,
                            obs_dimension=env.observation_space_dimension, is_continuous=env.is_continuous,
                            a_bound=env.a_bound)
@@ -94,10 +94,10 @@ def get_racingPPO_CNN(worker=None):
                 regular_str=1e-2,
                 minibatch=128,
                 vf_coef=1,
-                epoch=8,
+                epoch=10,
                 max_grad_norm=0.5,
                 )
-    train = Train(train=True, max_episode=5e5, max_step=2000, batch_size=512, print_every_episode=1)
+    train = Train(train=True, max_episode=5e5, max_step=100000, batch_size=8192, print_every_episode=1)
     return actor, env, train
 
 
@@ -109,14 +109,14 @@ def get_racingPPO_LSTM(worker=None):
     feed_forward = ConvLSTM(a_len=env.discrete_action_bound, a_dimension=env.action_space_dimension,
                             obs_dimension=env.observation_space_dimension, is_continuous=env.is_continuous,
                             a_bound=env.a_bound)
-    actor = PPO(obs_dimension=env.observation_space_dimension, lr=0.0001, feature_transform=feature_transform,
+    actor = PPO(obs_dimension=env.observation_space_dimension, lr=1e-3, feature_transform=feature_transform,
                 model=feed_forward,
                 epsilon=0.1,
                 worker=worker,
                 a_dimension=env.action_space_dimension,
                 action_space_length=env.discrete_action_bound,
                 regular_str=1e-2,
-                minibatch=32,
+                minibatch=8,
                 epoch=10,
                 max_grad_norm=0.5,
                 vf_coef=1

@@ -1,6 +1,6 @@
 from common.episode import Episode
 import tensorflow as tf
-
+from feature.runnning_stat import RunningStats
 
 class Train:
 
@@ -23,6 +23,7 @@ class Train:
         self.summaries = None
         self.writer = None
         self.worker = False
+        self.rolling_r = RunningStats()
 
         self.moving_average = tf.Variable(1, name="w_1")
         tf.summary.scalar("normal/moving_mean", self.moving_average)

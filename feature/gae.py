@@ -1,6 +1,6 @@
 import numpy as np
 from feature.feature import FeatureTransform
-
+from feature.runnning_stat import RunningStats
 
 class GAE(FeatureTransform):
 
@@ -28,5 +28,6 @@ class GAE(FeatureTransform):
             q[t, 0] = g_adv[t, 0] + v[t, 0]
         '''
         g_adv = (g_adv - g_adv.mean()) / np.maximum(g_adv.std(), 1e-6)
+        r = (r - self.min_reward / 2) / ((self.max_reward - self.min_reward)/2)
         '''
         return s, s_, a, r, v, g_adv, adv, q, experience_size

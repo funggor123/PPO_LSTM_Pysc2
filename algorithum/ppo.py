@@ -5,7 +5,7 @@ import tensorflow as tf
 class PPO(A2C):
 
     def __init__(self, obs_dimension, a_dimension, lr, action_space_length, feature_transform,
-                 epsilon, model, regular_str, minibatch, epoch, vf_coef, max_grad_norm, worker, is_seperate=False, isPysc2=False):
+                 epsilon, model, regular_str, minibatch, epoch, vf_coef, max_grad_norm, worker, is_seperate=False, isPysc2=False, isLSTM=False):
         super(PPO, self).__init__(obs_dimension, a_dimension, action_space_length, lr,
                                   feature_transform, model, regular_str, minibatch, epoch, max_grad_norm, isa2c=False, is_seperate=is_seperate)
 
