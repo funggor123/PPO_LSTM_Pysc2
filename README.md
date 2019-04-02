@@ -10,9 +10,6 @@
 
 5. DPPO with GAE
 
-6. DPPO with GAE, Q-Prop 
-
-7. DPPO with GAE, Q-Prop, Rudder
 
 ----------------------------------------------------------------------------
 
