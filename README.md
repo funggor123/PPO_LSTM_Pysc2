@@ -1,4 +1,4 @@
-# Final Year Project RL Algorithm testing for Playing StarCraft Mini Games
+# RL Algorithm testing
 
 1. A2C 
 
