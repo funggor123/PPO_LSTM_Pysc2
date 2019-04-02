@@ -3,15 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="9903dc60-0647-4fe3-b646-f218d1c8634e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1553709394.fung" beforeDir="false" afterPath="$PROJECT_DIR$/TensorBoard/events.out.tfevents.1553709394.fung" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/agent/agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/agent/agent.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/algorithum/dppo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/algorithum/a2c.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithum/a2c.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/algorithum/ppo.py" beforeDir="false" afterPath="$PROJECT_DIR$/algorithum/ppo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feature/feature.py" beforeDir="false" afterPath="$PROJECT_DIR$/feature/feature.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/feature/gae.py" beforeDir="false" afterPath="$PROJECT_DIR$/feature/gae.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/conv_lstm.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/conv_lstm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/conv_net.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/feed_forward.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/feed_forward.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parameter/parameters.py" beforeDir="false" afterPath="$PROJECT_DIR$/parameter/parameters.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,7 +17,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/A2C$main.coverage" NAME="main Coverage Results" MODIFIED="1553782794492" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/A2C$main.coverage" NAME="main Coverage Results" MODIFIED="1554021042853" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/A2C$simple_control.coverage" NAME="main Coverage Results" MODIFIED="1548011151301" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/A2C$py_agent.coverage" NAME="main Coverage Results" MODIFIED="1552210568856" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/A2C$network.coverage" NAME="simple_control Coverage Results" MODIFIED="1546886322146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -43,14 +39,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/algorithum/a2c.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/conv_lstm.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1707">
-              <caret line="38" column="32" lean-forward="true" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="120">
+              <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -58,8 +51,53 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/parameter/parameters.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
+            <state relative-caret-position="15">
+              <caret line="133" column="26" lean-forward="true" selection-start-line="133" selection-start-column="26" selection-end-line="133" selection-end-column="26" />
+              <folding>
+                <element signature="e#0#42#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/model/pysc2_conv_net.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="97">
+              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/agent/agent.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
+              <folding>
+                <element signature="e#1#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/agent/py_agent.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="44" column="24" selection-start-line="44" selection-start-column="24" selection-end-line="44" selection-end-column="24" />
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/batch_run.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -77,22 +115,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/agent/agent.py">
+        <entry file="file://$PROJECT_DIR$/algorithum/ppo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
-              <folding>
-                <element signature="e#1#41#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="332">
+              <caret line="109" column="24" selection-start-line="109" selection-start-column="24" selection-end-line="109" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/feature/feature.py">
+        <entry file="file://$PROJECT_DIR$/feature/gae.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="38" column="11" selection-start-line="38" selection-start-column="11" selection-end-line="38" selection-end-column="11" />
+            <state relative-caret-position="285">
+              <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -101,52 +136,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/algorithum/ppo.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="94" column="22" lean-forward="true" selection-start-line="94" selection-start-column="22" selection-end-line="94" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/train.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-641">
-              <caret line="27" column="53" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="53" />
-              <folding>
-                <element signature="e#0#34#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/conv_lstm.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="38" column="70" selection-start-line="38" selection-start-column="70" selection-end-line="38" selection-end-column="70" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/feed_forward.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="35" column="61" lean-forward="true" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="61" />
+            <state relative-caret-position="244">
+              <caret line="46" column="49" selection-start-line="46" selection-start-column="49" selection-end-line="46" selection-end-column="49" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/pysc2_conv_net.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="23" selection-start-line="23" selection-end-line="23" />
             </state>
           </provider>
         </entry>
@@ -162,11 +158,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>__get_td_error__</find>
-      <find>a_len</find>
-      <find>self.p</find>
-      <find>x</find>
-      <find>self.signma</find>
       <find>-----</find>
       <find>--a--</find>
       <find>prn</find>
@@ -192,6 +183,11 @@
       <find>stop_to_learn</find>
       <find>log</find>
       <find>print</find>
+      <find>get</find>
+      <find>init_state</find>
+      <find>final_state</find>
+      <find>self.init_state</find>
+      <find>self.a</find>
     </findStrings>
     <dirStrings>
       <dir>D:\RL\A2C\TensorBoard\train</dir>
@@ -203,8 +199,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/TensorBoard/batch.py" />
-        <option value="$PROJECT_DIR$/batch.py" />
         <option value="$PROJECT_DIR$/environment.py" />
         <option value="$PROJECT_DIR$/awd.py" />
         <option value="$PROJECT_DIR$/conv_net.py" />
@@ -218,7 +212,6 @@
         <option value="$PROJECT_DIR$/train.py" />
         <option value="$PROJECT_DIR$/run.sh" />
         <option value="$PROJECT_DIR$/common/experience.py" />
-        <option value="$PROJECT_DIR$/model/lstm.py" />
         <option value="$PROJECT_DIR$/algorithum/a3c.py" />
         <option value="$PROJECT_DIR$/algorithum/dppo.py" />
         <option value="$PROJECT_DIR$/model/awd.py" />
@@ -233,7 +226,6 @@
         <option value="$PROJECT_DIR$/algorithum/py_a2c.py" />
         <option value="$PROJECT_DIR$/common/episode.py" />
         <option value="$PROJECT_DIR$/main.py" />
-        <option value="$PROJECT_DIR$/model/feed_forward.py" />
         <option value="$PROJECT_DIR$/agent/multi_agent.py" />
         <option value="$PROJECT_DIR$/dist.py" />
         <option value="$PROJECT_DIR$/dist/config.py" />
@@ -247,20 +239,24 @@
         <option value="$PROJECT_DIR$/common/train.py" />
         <option value="$PROJECT_DIR$/feature/runnning_stat.py" />
         <option value="$PROJECT_DIR$/feature/gae.py" />
-        <option value="$PROJECT_DIR$/algorithum/a2c.py" />
         <option value="$PROJECT_DIR$/feature/feature.py" />
         <option value="$PROJECT_DIR$/model/rnn.py" />
+        <option value="$PROJECT_DIR$/model/cnn.py" />
+        <option value="$PROJECT_DIR$/model/LSTM.py" />
+        <option value="$PROJECT_DIR$/model/feed_forward.py" />
+        <option value="$PROJECT_DIR$/algorithum/ppo.py" />
+        <option value="$PROJECT_DIR$/algorithum/a2c.py" />
+        <option value="$PROJECT_DIR$/model/lstm.py" />
+        <option value="$PROJECT_DIR$/model/conv_lstm.py" />
         <option value="$PROJECT_DIR$/parameter/parameters.py" />
         <option value="$PROJECT_DIR$/agent/agent.py" />
-        <option value="$PROJECT_DIR$/model/conv_lstm.py" />
-        <option value="$PROJECT_DIR$/algorithum/ppo.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="310" />
-    <option name="y" value="24" />
-    <option name="width" value="1290" />
+    <option name="x" value="216" />
+    <option name="y" value="37" />
+    <option name="width" value="1384" />
     <option name="height" value="840" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -269,6 +265,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -304,6 +301,12 @@
             <path>
               <item name="A2C" type="b2602c69:ProjectViewProjectNode" />
               <item name="A2C" type="462c0819:PsiDirectoryNode" />
+              <item name="DPPO" type="462c0819:PsiDirectoryNode" />
+              <item name="Pong-v0" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="A2C" type="b2602c69:ProjectViewProjectNode" />
+              <item name="A2C" type="462c0819:PsiDirectoryNode" />
               <item name="feature" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -325,10 +328,10 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/main.py" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -424,12 +427,13 @@
       <workItem from="1552716919676" duration="12773000" />
       <workItem from="1552746544004" duration="9790000" />
       <workItem from="1552920791368" duration="9000" />
-      <workItem from="1553621552461" duration="43301000" />
+      <workItem from="1553621552461" duration="55518000" />
+      <workItem from="1554124038692" duration="27563000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="465332000" />
+    <option name="totallyTimeSpent" value="505112000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -444,12 +448,12 @@
     <frame x="65" y="-4" width="1535" height="904" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14237744" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1443922" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3271028" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.7132304" visible="true" weight="0.33333334" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.9039624" visible="true" weight="0.15855181" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3978638" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -457,8 +461,8 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32977304" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.28676966" side_tool="true" visible="true" weight="0.33333334" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.7028443" weight="0.19432624" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.09603761" side_tool="true" visible="true" weight="0.15855181" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.7018133" weight="0.19305019" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32867134" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -493,8 +497,10 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/A2C$main.coverage" NAME="main Coverage Results" MODIFIED="1554188242269" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/.local/lib/python3.5/site-packages/gym/envs/registration.py" />
     <entry file="file://$PROJECT_DIR$/awd.py" />
     <entry file="file://$PROJECT_DIR$/dppo.py" />
     <entry file="file://$PROJECT_DIR$/nstep.py" />
@@ -515,7 +521,6 @@
     </entry>
     <entry file="file://$USER_HOME$/.local/lib/python3.5/site-packages/pysc2/env/sc2_env.py" />
     <entry file="file://$USER_HOME$/.local/lib/python3.5/site-packages/pysc2/lib/features.py" />
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/client/session.py" />
     <entry file="file://$PROJECT_DIR$/common/experience.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -531,39 +536,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/algorithum/a3c.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feature/py_feature.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="59" column="29" selection-start-line="59" selection-start-column="29" selection-end-line="59" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/agent/multi_agent.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dist.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/agent/py_agent.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="44" column="24" selection-start-line="44" selection-start-column="24" selection-end-line="44" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/agent/multi_agent.py" />
+    <entry file="file://$PROJECT_DIR$/dist.py" />
     <entry file="file://$PROJECT_DIR$/dist/node.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -580,26 +554,6 @@
           <caret line="10" selection-start-line="10" selection-end-line="10" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/algorithum/py_a2c.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="209" column="38" selection-start-line="209" selection-start-column="38" selection-end-line="209" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/algorithum/py_ppo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -645,13 +599,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/batch_run.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dist/worker.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -679,56 +626,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/feature/py_gae.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="25" column="90" selection-start-line="25" selection-start-column="90" selection-end-line="25" selection-end-column="90" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/algorithum/dppo.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feature/runnning_stat.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="18" column="27" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feature/gae.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/feature/feature.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="38" column="11" selection-start-line="38" selection-start-column="11" selection-end-line="38" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/rnn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/algorithum/dppo.py" />
+    <entry file="file://$PROJECT_DIR$/model/rnn.py" />
     <entry file="file://$PROJECT_DIR$/common/train.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-641">
@@ -739,17 +638,101 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/cnn.py">
+    <entry file="file://$PROJECT_DIR$/algorithum/py_ppo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="19" column="24" selection-end-line="45" />
+        <state relative-caret-position="225">
+          <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parameter/parameters.py">
+    <entry file="file://$PROJECT_DIR$/algorithum/a3c.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/client/session.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
+        <state relative-caret-position="19650">
+          <caret line="1333" selection-start-line="1333" selection-end-line="1333" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algorithum/py_a2c.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1274">
+          <caret line="209" column="38" selection-start-line="209" selection-start-column="38" selection-end-line="209" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/algorithum/a2c.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="36" column="70" selection-start-line="36" selection-start-column="70" selection-end-line="36" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/lstm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/cnn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-45">
+          <caret line="8" column="29" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feature/runnning_stat.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="27" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feature/py_feature.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="599">
+          <caret line="59" column="29" selection-start-line="59" selection-start-column="29" selection-end-line="59" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feature/feature.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="569">
+          <caret line="38" column="11" selection-start-line="38" selection-start-column="11" selection-end-line="38" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feature/py_gae.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="90" selection-start-line="25" selection-start-column="90" selection-end-line="25" selection-end-column="90" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/batch_run.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
         </state>
       </provider>
     </entry>
@@ -763,54 +746,74 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/algorithum/ppo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="109" column="24" selection-start-line="109" selection-start-column="24" selection-end-line="109" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/feature/gae.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="22" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/model/feed_forward.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="35" column="61" lean-forward="true" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="61" />
+        <state relative-caret-position="244">
+          <caret line="46" column="49" selection-start-line="46" selection-start-column="49" selection-end-line="46" selection-end-column="49" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/pysc2_conv_net.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/conv_lstm.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="38" column="70" selection-start-line="38" selection-start-column="70" selection-end-line="38" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/algorithum/ppo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="94" column="22" lean-forward="true" selection-start-line="94" selection-start-column="22" selection-end-line="94" selection-end-column="22" />
+        <state relative-caret-position="120">
+          <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/agent/agent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+        <state relative-caret-position="300">
+          <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
           <folding>
             <element signature="e#1#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/algorithum/a2c.py">
+    <entry file="file://$PROJECT_DIR$/agent/py_agent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1707">
-          <caret line="38" column="32" lean-forward="true" selection-start-line="38" selection-start-column="32" selection-end-line="38" selection-end-column="32" />
+        <state relative-caret-position="135">
+          <caret line="44" column="24" selection-start-line="44" selection-start-column="24" selection-end-line="44" selection-end-column="24" />
           <folding>
-            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#0#35#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parameter/parameters.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="133" column="26" lean-forward="true" selection-start-line="133" selection-start-column="26" selection-end-line="133" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/pysc2_conv_net.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
         </state>
       </provider>
     </entry>

@@ -2,7 +2,6 @@
 from common.experience import Experience
 from common.episode import Episode
 import parameter.parameters as ps
-import numpy as np
 
 see = False
 
@@ -13,6 +12,10 @@ def train_episode(sess, actor, environment, train):
 
     entire_episode = Episode()
     episode = Episode()
+    l_state = None
+
+    if actor.isLSTM:
+        l_state = actor.get_init_state(sess)
 
     for step in range(train.max_step):
 
@@ -21,7 +24,7 @@ def train_episode(sess, actor, environment, train):
 
         last_state_observation = observation
 
-        action, value = actor.choose_action(sess, observation)
+        action, value, l_state = actor.choose_action(sess, observation, l_state)
         observation, reward, done, info = env.step(action)
 
         exp = Experience()
@@ -35,7 +38,7 @@ def train_episode(sess, actor, environment, train):
             if observation is None:
                 episode.set_terminal_state_value(0)
             else:
-                episode.set_terminal_state_value(actor.get_value(sess, observation))
+                episode.set_terminal_state_value(actor.get_value(sess, observation, l_state))
 
             if train.train is True:
                 episode = actor.learn(sess, episode)
@@ -48,4 +51,4 @@ def train_episode(sess, actor, environment, train):
 
 
 def init(worker=None):
-    return ps.get_racingPPO_LSTM()
+    return ps.get_racingPPO_CONV_LSTM()

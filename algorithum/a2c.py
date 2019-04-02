@@ -5,7 +5,7 @@ import numpy as np
 class A2C:
 
     def __init__(self, obs_dimension, a_dimension, action_space_length, lr, feature_transform,
-                 model, regular_str, minibatch, epoch, max_grad_norm, isa2c=True, is_seperate=False):
+                 model, regular_str, minibatch, epoch, max_grad_norm, isLSTM, isa2c=True, is_seperate=False):
 
         self.obs_dim = obs_dimension
         self.a_dim = a_dimension
@@ -16,6 +16,7 @@ class A2C:
         self.feature_t = feature_transform
         self.is_seperate = is_seperate
         self.max_grad_norm = max_grad_norm
+        self.isLSTM = isLSTM
 
         self.s = tf.placeholder(tf.float32, shape=(None,) + obs_dimension, name="state")
         self.v = tf.placeholder(tf.float32, shape=(None, 1), name="value")
@@ -27,14 +28,25 @@ class A2C:
             self.a = tf.placeholder(tf.int32, shape=[None, ], name="action")
 
         if isa2c is False:
-            self.dataset = tf.data.Dataset.from_tensor_slices({"state": self.s, "actions": self.a,
-                                                               "rewards": self.v, "advantage": self.td_error})
-            self.dataset = self.dataset.shuffle(buffer_size=10000)
-            self.dataset = self.dataset.batch(minibatch)
-            self.dataset = self.dataset.cache()
-            self.dataset = self.dataset.repeat(epoch)
-            self.iterator = self.dataset.make_initializable_iterator()
-            self.batch = self.iterator.get_next()
+            if isLSTM:
+                self.dataset = tf.data.Dataset.from_tensor_slices({"state": self.s, "actions": self.a,
+                                                                   "rewards": self.v, "advantage": self.td_error})
+                self.dataset = self.dataset.batch(minibatch, drop_remainder=True)
+                self.dataset = self.dataset.cache()
+                self.dataset = self.dataset.repeat(epoch)
+                self.dataset = self.dataset.shuffle(buffer_size=10000)
+                self.iterator = self.dataset.make_initializable_iterator()
+                self.batch = self.iterator.get_next()
+
+            else:
+                self.dataset = tf.data.Dataset.from_tensor_slices({"state": self.s, "actions": self.a,
+                                                                   "rewards": self.v, "advantage": self.td_error})
+                self.dataset = self.dataset.shuffle(buffer_size=10000)
+                self.dataset = self.dataset.batch(minibatch)
+                self.dataset = self.dataset.cache()
+                self.dataset = self.dataset.repeat(epoch)
+                self.iterator = self.dataset.make_initializable_iterator()
+                self.batch = self.iterator.get_next()
 
             if self.is_seperate:
                 self.policy_out, self.params = model.make_actor_network(input_opr=self.batch['state'],
@@ -54,11 +66,12 @@ class A2C:
                     batch_size=minibatch,
                     train=True)
         else:
-            self.value_out, self.policy_out, self.params, self.i_state, self.f_state = model.make_network(
+            self.value_out, self.policy_out, self.params, self.old_i_state, self.old_f_state = model.make_network(
                 input_opr=self.s,
                 name="target",
                 batch_size=minibatch,
                 train=True)
+
         if self.is_seperate:
             self.policy_eval, _ = model.make_actor_network(self.s, 'target', batch_size=1, reuse=True)
             self.value_eval, _ = model.make_critic_network(self.s, 'target_value', batch_size=1, reuse=True)
@@ -91,7 +104,6 @@ class A2C:
 
         self.init = tf.global_variables_initializer()
         self.saver = tf.train.Saver()
-
 
     def get_global_step(self):
         return self.global_step
@@ -155,9 +167,13 @@ class A2C:
     def get_computed_gradient(self, loss, opt):
         return opt.compute_gradients(loss)
 
-    def get_value(self, sess, s):
-        s = np.reshape(s, newshape=(1,) + self.obs_dim)
-        value = sess.run(self.value_eval, feed_dict={self.s: s})
+    def get_value(self, sess, s, final_state):
+        if self.isLSTM:
+            s = np.reshape(s, newshape=(1,) + self.obs_dim)
+            value = sess.run(self.value_eval, feed_dict={self.s: s, self.eval_i_state: final_state})
+        else:
+            s = np.reshape(s, newshape=(1,) + self.obs_dim)
+            value = sess.run(self.value_eval, feed_dict={self.s: s})
         return value
 
     def learn(self, sess, episode):
@@ -174,17 +190,37 @@ class A2C:
 
         return episode
 
-    def choose_action(self, sess, s):
-        shape = (1,) + self.obs_dim
-        s = np.reshape(s, newshape=shape)
-        action, value = sess.run([self.policy, self.value_eval], feed_dict={self.s: s})
-        if self.model.is_continuous:
-            action = np.clip(action, self.model.a_bound[0], self.model.a_bound[1])
-            action = np.reshape(action, newshape=self.a_dim)
-            return action, value
-        else:
-            if self.model.isCat:
-                action = action[0]
+    def get_init_state(self, sess):
+        return sess.run(self.eval_i_state)
+
+    def choose_action(self, sess, s, i_state):
+        if self.isLSTM:
+            shape = (1,) + self.obs_dim
+            s = np.reshape(s, newshape=shape)
+            action, value, f_state = sess.run([self.policy, self.value_eval, self.eval_f_state],
+                                              feed_dict={self.s: s, self.eval_i_state: i_state})
+            if self.model.is_continuous:
+                action = np.clip(action, self.model.a_bound[0], self.model.a_bound[1])
+                action = np.reshape(action, newshape=self.a_dim)
+                return action, value, f_state
             else:
-                action = np.random.choice(range(action.shape[1]), p=action.ravel())
-            return action, value
+                if self.model.isCat:
+                    action = action[0]
+                else:
+                    action = np.random.choice(range(action.shape[1]), p=action.ravel())
+                return action, value, f_state
+        else:
+            shape = (1,) + self.obs_dim
+            s = np.reshape(s, newshape=shape)
+            action, value = sess.run([self.policy, self.value_eval],
+                                     feed_dict={self.s: s})
+            if self.model.is_continuous:
+                action = np.clip(action, self.model.a_bound[0], self.model.a_bound[1])
+                action = np.reshape(action, newshape=self.a_dim)
+                return action, value, None
+            else:
+                if self.model.isCat:
+                    action = action[0]
+                else:
+                    action = np.random.choice(range(action.shape[1]), p=action.ravel())
+                return action, value, None

@@ -9,7 +9,7 @@ class Py_PPO(Py_A2C):
                  training=True):
         super(Py_PPO, self).__init__(msize, ssize, lr, feature_transform, model, regular_str, minibatch, epoch, isa2c,
                                      training)
-        self.epsilonx = epsilonx
+        self.epsilonx = epsilon
 
         self.value_old_out, self.old_policy_out, self.old_params, _, _ = model.make_network(
             input_opr=self.input_opr_batch,

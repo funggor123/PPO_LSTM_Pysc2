@@ -10,7 +10,7 @@ class Model:
         self.obs_dimension = obs_dimension
         self.a_dimension = a_dimension
         self.is_continuous = is_continuous
-        self.num_unit = 100
+        self.num_unit = 50
         self.isCat = is_cat
         self.L2_REG = 0.001
 
